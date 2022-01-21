@@ -1,0 +1,18 @@
+---
+in:
+Class Diagram{
+} 
+Class Program{
+    main(){
+        var r, s: Int;
+        r = 2.0;
+        var a, b: Array[Int, 5];
+        a[0] = s;
+    }
+}
+out:successful
+---
+in:
+Class Diagram{
+}
+out:Error on line 2 col 1: <EOF>
