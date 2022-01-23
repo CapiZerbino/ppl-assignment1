@@ -1,1 +1,1 @@
-Error Token "
+Var,r,,,s,:,Int,;,<EOF>

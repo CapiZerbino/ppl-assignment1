@@ -1,13 +1,15 @@
 ---
 in:
-Class Diagram{
-} 
+Class Diagram:Shape {
+    haha(){
+        Return $dfshjgsdj;
+    }
+}
 Class Program{
     main(){
-        var r, s: Int;
-        r = 2.0;
-        var a, b: Array[Int, 5];
-        a[0] = s;
+        Foreach(x In 3 .. 4){
+            return 5;
+        }
     }
 }
 out:successful

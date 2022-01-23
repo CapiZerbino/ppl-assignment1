@@ -104,3 +104,9 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.test("""Array(0x1A,0b01)""","Array,(,0x1A,,,0b01,),<EOF>",150))
     def test_case_151(self):
         self.assertTrue(TestLexer.test("""\"This isn\'\"t my thing\t\"""","This isn\'\"t my thing\t,<EOF>",151))
+    def test_case_152(self):
+        self.assertTrue(TestLexer.test("""Var r, s: Int;""","Var,r,,,s,:,Int,;,<EOF>",152))
+    def test_case_153(self):
+        self.assertTrue(TestLexer.test("""Class Diagram{}""","Class,Diagram,{,},<EOF>",153))
+    def test_case_154(self):
+        self.assertTrue(TestLexer.test("""main(){}""","main,(,),{,},<EOF>",154))

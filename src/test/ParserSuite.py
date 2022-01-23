@@ -1,17 +1,22 @@
 import unittest
+
 from TestUtils import TestParser
+
+
 class ParserSuite(unittest.TestCase):
 
     def test_case_201(self):
         self.assertTrue(TestParser.test(
-"""Class Diagram{
-} 
+"""Class Diagram:Shape {
+    haha(){
+        Return $dfshjgsdj;
+    }
+}
 Class Program{
     main(){
-        var r, s: Int;
-        r = 2.0;
-        var a, b: Array[Int, 5];
-        a[0] = s;
+        Foreach(x In 3 .. 4 By 2){
+            
+        }
     }
 }"""
     ,"successful",201))
