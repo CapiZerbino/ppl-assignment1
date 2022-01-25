@@ -14,16 +14,6 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#class_init.
-    def visitClass_init(self, ctx:D96Parser.Class_initContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#body.
-    def visitBody(self, ctx:D96Parser.BodyContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by D96Parser#class_decl.
     def visitClass_decl(self, ctx:D96Parser.Class_declContext):
         return self.visitChildren(ctx)
@@ -134,6 +124,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#expr_11.
+    def visitExpr_11(self, ctx:D96Parser.Expr_11Context):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#operands.
     def visitOperands(self, ctx:D96Parser.OperandsContext):
         return self.visitChildren(ctx)
@@ -146,6 +141,16 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#expr_list.
     def visitExpr_list(self, ctx:D96Parser.Expr_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#postfix.
+    def visitPostfix(self, ctx:D96Parser.PostfixContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#postfix_array.
+    def visitPostfix_array(self, ctx:D96Parser.Postfix_arrayContext):
         return self.visitChildren(ctx)
 
 
@@ -196,11 +201,6 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#element_type.
     def visitElement_type(self, ctx:D96Parser.Element_typeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#object_create.
-    def visitObject_create(self, ctx:D96Parser.Object_createContext):
         return self.visitChildren(ctx)
 
 

@@ -8,7 +8,11 @@ class ParserSuite(unittest.TestCase):
 } 
 Class Program{
     main(){
-        a=3;
+        Var r, s: Int;
+        r = 2.0;
+        Var a, b: Array[Int, 5];
+        s = r * r * Self.myPI;
+        a[0] = s;
     }
 }"""
     ,"successful",201))
@@ -60,9 +64,7 @@ Class Program{
 """Class Program {
     main(){
         Var $num1, $num2, $num3, $num4 :  Boolean = True, True, False;
-        Myfunc(){
-            a = 1;
-        }
+
     }
 }"""
     ,"successful",205))
@@ -106,6 +108,7 @@ Class Program{
         }
         Else{
             a = a * 3 / 3 /3 /4 /4 + 5 -9; 
+            Break;
         }
     }
 }"""

@@ -22,6 +22,7 @@ Class Program{
         }
         Else{
             a = a * 3 / 3 /3 /4 /4 + 5 -9; 
+            Break;
         }
     }
 }

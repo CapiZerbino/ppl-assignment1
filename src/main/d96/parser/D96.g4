@@ -9,9 +9,7 @@ options {
 	language = Python3;
 }
 
-program: class_decl* class_init EOF;
-class_init: 'Class' 'Program' LCB body RCB;
-body: 'main' LP RP block_stmt;
+program: class_decl+  EOF;
 /* Class declaration */
 class_decl: CLASS classname LCB classbody RCB;
 classname: IDENTIFIER (':'IDENTIFIER)?;
@@ -72,16 +70,22 @@ expr_9:
 	| expr_10; 
 expr_10: 
 	NEW expr_10 
-	| operands;
+	| expr_11;
+expr_11:
+	operands
+	| LP expression RP;
 operands
 	: IDENTIFIER
 	| literals
 	| call_expr
-	| object_create
-
+	| operands postfix
+	| operands postfix_array
+	| SELF
 	;
 call_expr: IDENTIFIER LP expr_list? RP ;
 expr_list: expression (CM expression)*;
+postfix: LP expression_list RP;
+postfix_array: LSB expression RSB;
 literals
 	: INT_LIT
 	| FLOAT_LIT
@@ -106,13 +110,6 @@ arrayitemarray_list:array_lit(','array_lit)*;
 /* Array declaration */
 array_decl: ARRAY LSB element_type CM INT_LIT RSB;
 element_type: (primitive_types | ARRAY);
-
-
-
-/* Member access */
-
-/* Object creation */
-object_create: NEW IDENTIFIER LP expression_list? RP SM;
 
 
 
@@ -157,7 +154,7 @@ continue_stmt: CONTINUE SM;
 
 return_stmt: RETURN expression? SM;
 
-methodinvocation_stmt:VAL;
+methodinvocation_stmt: expression SM;
 
 //LEXER
 
@@ -186,6 +183,7 @@ DESTRUCTOR: 'Destructor';
 NEW: 'New';
 BY: 'By';
 WRITELN: 'WriteLn' | 'writeln' | 'WRITELN';
+SELF: 'Self';
 
 /* Operators */
 PLUS: '+';
