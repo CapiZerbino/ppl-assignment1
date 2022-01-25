@@ -39,10 +39,10 @@ primitive_types
 /* 5.EXPRESSIONS */
 expression_list:expression (CM expression)*;
 expression: 
-	expression (STR_CONCAT | STR_CMP) expression 
+	expr_1 (STR_CONCAT | STR_CMP) expr_1 
 	| expr_1;
 expr_1: 
-	expr_1 (EQ | NE | GT | LS | GE | LE) expr_1 
+	expr_2 (EQ | NE | GT | LS | GE | LE) expr_2 
 	| expr_2;
 expr_2: 
 	expr_2 (ANDAND | OROR) expr_3 
@@ -66,7 +66,7 @@ expr_8:
 	expr_8 DOT expr_9 
 	| expr_9;
 expr_9: 
-	expr_9 DCL expr_9 
+	expr_10 DCL expr_10 
 	| expr_10; 
 expr_10: 
 	NEW expr_10 

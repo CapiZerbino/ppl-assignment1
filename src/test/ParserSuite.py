@@ -8,11 +8,11 @@ class ParserSuite(unittest.TestCase):
 } 
 Class Program{
     main(){
-        Var r, s: Int;
-        r = 2.0;
-        Var a, b: Array[Int, 5];
-        s = r * r * Self.myPI;
-        a[0] = s;
+        New class1();
+        ##New class2(a,b : Int ; c : Float);##
+        New class3(1,2,3);
+        New class4(a[1]);
+        New class5(class1::class2);
     }
 }"""
     ,"successful",201))
