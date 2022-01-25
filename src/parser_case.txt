@@ -1,15 +1,10 @@
 ---
 in:
-Class Diagram:Shape {
-    haha(){
-        Return $dfshjgsdj;
-    }
-}
+Class Diagram{
+} 
 Class Program{
     main(){
-        Foreach(x In 3 .. 4){
-            return 5;
-        }
+        a=3;
     }
 }
 out:successful
@@ -18,3 +13,96 @@ in:
 Class Diagram{
 }
 out:Error on line 2 col 1: <EOF>
+---
+in:
+Class Diagram{
+    getArea(){
+        Return a;
+    }
+}
+Class Program{
+    main(){
+        ## Comment something here ##
+        Var a : Int;
+        a = 5;
+        Var b : String;
+    }
+}
+out:successful
+---
+in:
+Class Program{
+    main(){
+        ## Comment something here ##
+        Var a : Int;
+        a = 5;
+        ## Comment something here ##
+        Var b : String;
+        Val $c, d, $acc: String = "Here is another string","asd";
+        Foreach(a In 1 .. 2){
+            Var a: Int;
+            If(a ==1){
+                a = 2 * call(aladin);
+                Break;
+                Invocation::$id();
+            }
+        }
+        Return;
+    }
+}
+out:successful
+---
+in:
+Class Program {
+    main(){
+        Var $num1, $num2, $num3, $num4 :  Boolean = True, True, False;
+        Myfunc(){
+            a = 1;
+        }
+    }
+}
+out:successful
+---
+in:
+Class Shape {
+    GetFunc(a,b : Int ; c : Float) {
+        Val num1: Int = 1;
+        Val num1, num2: Int = 1,2;
+    }
+}
+Class Program{
+    main(){
+        something = (True == (!False));
+    }
+}
+out:successful
+---
+in:
+Class Shape {
+    Val $numOfShape: Int = 0;
+    Val immutableAttribute: Int = 0;
+    Var length, $width: Int;
+    Var a : Array[Int,3] = Array( 1,2,3 );
+
+    $getNumOfShape() {
+        Return $numOfShape;
+    }
+}
+Class Program{
+    main(){
+        Var a : Int = 12;
+        If(a > 0){
+            a = 0x0A + 0x12_ABCD; 
+            Foreach(i In 1 .. 100 By 2){
+                a =  a[1+2+3];
+                a = a::getShape();
+                Continue;
+            }
+            
+        }
+        Else{
+            a = a * 3 / 3 /3 /4 /4 + 5 -9; 
+        }
+    }
+}
+out:successful

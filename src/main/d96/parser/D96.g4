@@ -18,7 +18,7 @@ classname: IDENTIFIER (':'IDENTIFIER)?;
 classbody:(attribute_decl | method_decl)*;
 
 /* Attribute declaration */
-attribute_decl: (VAL|VAR) attributename_list CL primitive_types attribute_init SM;
+attribute_decl: (VAL|VAR) attributename_list CL (primitive_types|array_decl) attribute_init SM;
 attributename_list: IDENTIFIER (CM IDENTIFIER)*;
 attribute_init: (ASSIGN expression_list)?;
 
@@ -78,13 +78,14 @@ operands
 	| literals
 	| call_expr
 	| object_create
+
 	;
 call_expr: IDENTIFIER LP expr_list? RP ;
 expr_list: expression (CM expression)*;
 literals
 	: INT_LIT
 	| FLOAT_LIT
-	| BOOL_LIT
+	| bool_lit
 	| STRING_LIT
 	| array_lit
 	;
@@ -99,7 +100,7 @@ array_list
 	;
 arrayitemint_list: INT_LIT(','INT_LIT)*;
 arrayitemfloat_list:FLOAT_LIT(','FLOAT_LIT)* ;
-arrayitembool_list:BOOL_LIT(','BOOL_LIT)*;
+arrayitembool_list:bool_lit(','bool_lit)*;
 arrayitemstring_list:STRING_LIT(','STRING_LIT)*;
 arrayitemarray_list:array_lit(','array_lit)*;
 /* Array declaration */
@@ -120,9 +121,8 @@ object_create: NEW IDENTIFIER LP expression_list? RP SM;
 /* Operator precedence and associativity */
 
 /* Type coercions */
-index_expression
-	:  
-	;
+index_expression:  expression index_op;
+index_op: (LSB expression RSB) | (LSB expression RSB index_op);
 
 /* 6.STATEMENTS */
 block_stmt
@@ -139,7 +139,7 @@ stmt_list
 	|methodinvocation_stmt
 	|block_stmt
 	;
-vardecl_stmt:(VAL|VAR) varname_list CL primitive_types var_init? SM;
+vardecl_stmt:(VAL|VAR) varname_list CL (primitive_types | array_decl) var_init? SM;
 var_init: ASSIGN expression_list;
 varname_list: IDENTIFIER (CM IDENTIFIER)*;
 
@@ -149,7 +149,7 @@ assign_tail: (assign_lhs ASSIGN assign_tail) | expression;
 
 if_stmt: IF LP expression RP block_stmt (ELSEIF LP expression RP block_stmt)* (ELSE block_stmt)?;
 
-forin_stmt: FOREACH LP IDENTIFIER IN INT_LIT '..' INT_LIT (BY INT_LIT)?RP block_stmt;
+forin_stmt: FOREACH LP IDENTIFIER IN INT_LIT DDOT INT_LIT (BY INT_LIT)?RP block_stmt;
 
 break_stmt: BREAK SM;
 
@@ -209,6 +209,7 @@ DCL: '::';
 SM : ';';
 CM : ',';
 DOT: '.';
+DDOT: '..';
 CL: ':';
 
 /* Seperators */
@@ -229,7 +230,7 @@ FLOAT_LIT
 	| DOT DECIMAL* EXPONENT?
 	){self.text = self.text.replace("_", "")}
 	;
-BOOL_LIT: TRUE | FALSE;
+bool_lit: TRUE | FALSE;
 
 STRING_LIT:  '"' STR_CHAR* '"'{y = str(self.text)
 self.text = y[1:-1]

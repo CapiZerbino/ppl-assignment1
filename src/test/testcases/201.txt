@@ -1,12 +1,7 @@
-Class Diagram:Shape {
-    haha(){
-        Return $dfshjgsdj;
-    }
-}
+Class Diagram{
+} 
 Class Program{
     main(){
-        Foreach(x In 3 .. 4 By 2){
-            
-        }
+        a=3;
     }
 }

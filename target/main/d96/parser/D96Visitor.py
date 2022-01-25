@@ -209,6 +209,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#index_op.
+    def visitIndex_op(self, ctx:D96Parser.Index_opContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#block_stmt.
     def visitBlock_stmt(self, ctx:D96Parser.Block_stmtContext):
         return self.visitChildren(ctx)
@@ -276,6 +281,11 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#methodinvocation_stmt.
     def visitMethodinvocation_stmt(self, ctx:D96Parser.Methodinvocation_stmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#bool_lit.
+    def visitBool_lit(self, ctx:D96Parser.Bool_litContext):
         return self.visitChildren(ctx)
 
 

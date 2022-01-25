@@ -1,0 +1,19 @@
+Class Program{
+    main(){
+        ## Comment something here ##
+        Var a : Int;
+        a = 5;
+        ## Comment something here ##
+        Var b : String;
+        Val $c, d, $acc: String = "Here is another string","asd";
+        Foreach(a In 1 .. 2){
+            Var a: Int;
+            If(a ==1){
+                a = 2 * call(aladin);
+                Break;
+                Invocation::$id();
+            }
+        }
+        Return;
+    }
+}

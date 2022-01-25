@@ -1,1 +1,13 @@
-int main( {}
+Class Diagram{
+    getArea(){
+        Return a;
+    }
+}
+Class Program{
+    main(){
+        ## Comment something here ##
+        Var a : Int;
+        a = 5;
+        Var b : String;
+    }
+}
