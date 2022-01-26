@@ -1,0 +1,19 @@
+Class Dog {
+    Val breed: String;
+    Var age: Int;
+    Val color: String;
+    barking() {
+
+    }
+    hungry(){
+
+    }
+    sleeping() {
+
+    }
+}
+Class Program {
+    main(){
+        
+    }
+}

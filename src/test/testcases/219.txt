@@ -1,0 +1,11 @@
+Class Test_Expression{
+    Var String1: String = "hello";
+    Val String2: String = "World";
+    Val $StringFinal : String = String1 +. String2;
+    Val $AnotherString : String = "String1" +. "String2";
+}
+Class Program{
+    main(){
+        
+    }
+}

@@ -1,1 +1,1 @@
-$avs,$ags,<EOF>
+123E-9,<EOF>

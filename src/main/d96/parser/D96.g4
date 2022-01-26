@@ -15,8 +15,9 @@ class_decl: CLASS classname LCB classbody RCB;
 classname: IDENTIFIER (':'IDENTIFIER)?;
 classbody:(attribute_decl | method_decl)*;
 
+type_decl: primitive_types|array_decl | IDENTIFIER; 
 /* Attribute declaration */
-attribute_decl: (VAL|VAR) attributename_list CL (primitive_types|array_decl) attribute_init SM;
+attribute_decl: (VAL|VAR) attributename_list CL type_decl attribute_init SM;
 attributename_list: IDENTIFIER (CM IDENTIFIER)*;
 attribute_init: (ASSIGN expression_list)?;
 
@@ -26,7 +27,7 @@ method_decl
 	| (DESTRUCTOR LP RP block_stmt)
 	;
 parameter_list: parameter (SM parameter)*;
-parameter: IDENTIFIER (','IDENTIFIER)* CL primitive_types;
+parameter: IDENTIFIER (','IDENTIFIER)* CL type_decl;
 
 
 
@@ -81,6 +82,7 @@ operands
 	| operands postfix
 	| operands postfix_array
 	| SELF
+	| NULL
 	;
 call_expr: IDENTIFIER LP expr_list? RP ;
 expr_list: expression (CM expression)*;
@@ -136,9 +138,9 @@ stmt_list
 	|methodinvocation_stmt
 	|block_stmt
 	;
-vardecl_stmt:(VAL|VAR) varname_list CL (primitive_types | array_decl) var_init? SM;
+vardecl_stmt:(VAL|VAR) varname_list CL type_decl var_init? SM;
 var_init: ASSIGN expression_list;
-varname_list: IDENTIFIER (CM IDENTIFIER)*;
+varname_list: IDENTIFIER_NORMAL (CM IDENTIFIER_NORMAL)*;
 
 assign_stmt: assign_lhs ASSIGN assign_tail SM;
 assign_lhs: IDENTIFIER | index_expression;
@@ -220,49 +222,52 @@ RCB : '}';
 
 //tokens
 IDENTIFIER:ID_normal| ID_static;
-INT_LIT:(DECIMAL|OCTAL|HEX|BINARY){self.text = self.text.replace("_", "")};
+IDENTIFIER_NORMAL: ID_normal;
+INT_LIT:(DECIMAL|OCTAL|HEX|BINARY|'0'){self.text = self.text.replace("_", "")};
+// FLOAT_LIT
+// 	: (DECIMAL+ DOT (DECIMAL | EXPONENT)* // 1 | 1.5 | 1.e-4
+// 	| DECIMAL+ DOT DECIMAL+ EXPONENT? // (1).5(e-4)
+// 	| DECIMAL+ EXPONENT // 12e-5
+// 	| DOT DECIMAL* EXPONENT?
+// 	){self.text = self.text.replace("_", "")}
+// 	;
 FLOAT_LIT
-	: (DECIMAL+ DOT (DECIMAL | EXPONENT)* // 1 | 1.5 | 1.e-4
-	| DECIMAL+ DOT DECIMAL+ EXPONENT? // (1).5(e-4)
-	| DECIMAL+ EXPONENT // 12e-5
-	| DOT DECIMAL* EXPONENT?
-	){self.text = self.text.replace("_", "")}
+	:  (DECIMAL DECIMAL_FLOAT EXPONENT?
+	| DECIMAL? DECIMAL_FLOAT EXPONENT
+	| DECIMAL DECIMAL_FLOAT? EXPONENT){self.text = self.text.replace("_", "")}
 	;
 bool_lit: TRUE | FALSE;
 
-STRING_LIT:  '"' STR_CHAR* '"'{y = str(self.text)
-self.text = y[1:-1]
-	}
-	;
+STRING_LIT: '"' STR_CHAR* '"'{ self.text = self.text[1:-1] };
 
 //fragment
 fragment ID_normal: [a-zA-Z_][a-zA-Z0-9_]*;
 
 fragment ID_static: '$'[a-zA-Z_][a-zA-Z0-9_]*;
 
-fragment DECIMAL: ([1-9][0-9]*('_'[0-9]+)*)| '0';
+fragment DECIMAL: [0-9]+('_'[0-9]+)*;
 
 fragment OCTAL: '0'[0-7]+('_'[0-7]+)*;
 
-fragment HEX: '0'[xX]([0-9A-F]+('_'[0-9A-F]+)*)+;
+fragment HEX: '0'[xX][0-9A-F]+('_'[0-9A-F]+)*;
 
-fragment BINARY: '0' [bB] [01]+('_'[01]+)*;
+fragment BINARY: '0'[bB][01]+('_'[01]+)*;
+
+fragment DECIMAL_FLOAT: DOT DECIMAL?;
 
 fragment DIGIT: [0-9];
 
 fragment DIGITNONZERO: [1-9];
 
-SDIGIT:  DIGIT+;
-
-fragment EXPONENT: [eE] SIGN? DIGIT+ ;
+fragment EXPONENT: [eE] SIGN? DECIMAL ;
 
 fragment SIGN: [+-] ;
 
-fragment ESC_SEQ: '\\' [btnfr"'\\] ;
-
 fragment ESC_ILLEGAL: '\\' ~[btnfr"'\\] | ~'\\' ; 
 
-fragment STR_CHAR: ~[\b\t\n\f\r"'\\] | ESC_SEQ ;
+fragment STR_CHAR: ~[\n\r"\\] | ESC_ACCEPT ;
+
+fragment ESC_ACCEPT: '\\' [btnfr'\\] ;
 
 //skip
 WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
@@ -272,14 +277,16 @@ BLOCKCOMMENT: '##' .*? '##'-> skip;
 //error
 ERROR_CHAR: .{raise ErrorToken(self.text)};
 
-UNCLOSE_STRING: '"' STR_CHAR* ([\b\t\n\f\r"'\\] | EOF){
+UNCLOSE_STRING: '"' STR_CHAR* 
+	{
 		y = str(self.text)
-		possible = ['\b', '\t', '\n', '\f', '\r', '"', "'", '\\']
+		possible = ['\n', '\r']
 		if y[-1] in possible:
 			raise UncloseString(y[1:-1])
 		else:
-			raise UncloseString(y[1:]) 
-};
+			raise UncloseString(y[1:])
+	}
+	;
 ILLEGAL_ESCAPE: '"' STR_CHAR* ESC_ILLEGAL
 	{
 		y = str(self.text)

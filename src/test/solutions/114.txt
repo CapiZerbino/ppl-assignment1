@@ -1,1 +1,1 @@
-0X1A,TB,<EOF>
+Class,Triangle,::,Shape,{,},<EOF>

@@ -1,11 +1,4 @@
-Class Shape {
-    GetFunc(a,b : Int ; c : Float) {
-        Val num1: Int = 1;
-        Val num1, num2: Int = 1,2;
-    }
-}
-Class Program{
-    main(){
-        something = (True == (!False));
-    }
+Class Test_Attribute_1{
+    Val My1stCons, My2ndCons: Int = 1 + 5, 2;
+    Var $x, $y : Int = 0, 0;
 }

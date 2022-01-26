@@ -1,1 +1,1 @@
-Boolean,False,<EOF>
+1.2e3,1.2E3,<EOF>

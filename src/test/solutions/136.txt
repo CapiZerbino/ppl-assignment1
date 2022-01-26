@@ -1,1 +1,1 @@
-Boolean,True,<EOF>
+1.234,1.234,<EOF>

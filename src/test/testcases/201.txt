@@ -1,11 +1,18 @@
-Class Diagram{
-} 
-Class Program{
-    main(){
-        New class1();
-        ##New class2(a,b : Int ; c : Float);##
-        New class3(1,2,3);
-        New class4(a[1]);
-        New class5(class1::class2);
+Class Shape {
+        Val $numOfShape: Int = 0;
+        Val immutableAttribute: Int = 0;
+        Var length, width: Int;
+        $getNumOfShape() {
+            Return $numOfShape;
+}
+}
+Class Rectangle: Shape {
+    getArea() {
+        Return Self.length * Self.width;
+    }
+}
+Class Program {
+    main() {
+        Out.printInt(Shape::$numOfShape);
     }
 }

@@ -1,1 +1,1 @@
-Error Token $
+.123e-10,<EOF>
