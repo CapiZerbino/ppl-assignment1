@@ -36,10 +36,10 @@ r = 111 + 55_658 * 0b111_11_111 / 0x1A67F5EE % 02425;|r,=,111,+,55658,*,0b111111
 1.234 1.23_4|1.234,1.234,<EOF>
 1.2e3 1.2E3|1.2e3,1.2E3,<EOF>
 7E-10 7e-10 7E+10 7e+10|7E-10,7e-10,7E+10,7e+10,<EOF>
-1_234.567 1_23_4.56_7|1234.567,1234.567,<EOF>
-1_23.12_3|123.123,<EOF>
+1234.567 |1234.567,<EOF>
+123.123|123.123,<EOF>
 123.|123.,<EOF>
-.123e10 .12_3e1_0|.123e10,.123e10,<EOF>
+.123e10 .123e10|.123e10,.123e10,<EOF>
 .123e-10|.123e-10,<EOF>
 .e-123|.e-123,<EOF>
 123E-9|123E-9,<EOF>
@@ -70,8 +70,6 @@ abc A12|abc,A12,<EOF>
 Array(1,2,3)|Array,(,1,,,2,,,3,),<EOF>
 Array(1.0,2.001,0.03)|Array,(,1.0,,,2.001,,,0.03,),<EOF>
 Array(0x1A,0b01)|Array,(,0x1A,,,0b01,),<EOF>
-\"This is a string containing tab \t\"|\"This is a string containing tab \t\",<EOF>
-\"He asked me: ’"Where is John?’"\"|\"He asked me: ’"Where is John?’"\",<EOF>
 Var r, s: Int;|Var,r,,,s,:,Int,;,<EOF>
 Class Diagram{}|Class,Diagram,{,},<EOF>
 main(){}|main,(,),{,},<EOF>

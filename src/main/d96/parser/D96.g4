@@ -140,7 +140,7 @@ stmt_list
 	;
 vardecl_stmt:(VAL|VAR) varname_list CL type_decl var_init? SM;
 var_init: ASSIGN expression_list;
-varname_list: IDENTIFIER_NORMAL (CM IDENTIFIER_NORMAL)*;
+varname_list: IDENTIFIER (CM IDENTIFIER)*;
 
 assign_stmt: assign_lhs ASSIGN assign_tail SM;
 assign_lhs: IDENTIFIER | index_expression;
@@ -208,8 +208,8 @@ STR_CONCAT: '+.';
 DCL: '::';
 SM : ';';
 CM : ',';
-DOT: '.';
 DDOT: '..';
+DOT: '.';
 CL: ':';
 
 /* Seperators */
@@ -222,7 +222,7 @@ RCB : '}';
 
 //tokens
 IDENTIFIER:ID_normal| ID_static;
-IDENTIFIER_NORMAL: ID_normal;
+// IDENTIFIER_NORMAL: ID_normal;
 INT_LIT:(DECIMAL|OCTAL|HEX|BINARY|'0'){self.text = self.text.replace("_", "")};
 // FLOAT_LIT
 // 	: (DECIMAL+ DOT (DECIMAL | EXPONENT)* // 1 | 1.5 | 1.e-4
@@ -232,9 +232,13 @@ INT_LIT:(DECIMAL|OCTAL|HEX|BINARY|'0'){self.text = self.text.replace("_", "")};
 // 	){self.text = self.text.replace("_", "")}
 // 	;
 FLOAT_LIT
-	:  (DECIMAL DECIMAL_FLOAT EXPONENT?
-	| DECIMAL? DECIMAL_FLOAT EXPONENT
-	| DECIMAL DECIMAL_FLOAT? EXPONENT){self.text = self.text.replace("_", "")}
+	// :  (DECIMAL DECIMAL_FLOAT EXPONENT?
+	// | DECIMAL? DECIMAL_FLOAT EXPONENT
+	// | DECIMAL DECIMAL_FLOAT? EXPONENT){self.text = self.text.replace("_", "")}
+	:(DECIMAL DOT DIGIT+ EXPONENT?
+	| DECIMAL EXPONENT
+	| DOT DIGIT+ EXPONENT?
+	){self.text = self.text.replace("_", "")}
 	;
 bool_lit: TRUE | FALSE;
 

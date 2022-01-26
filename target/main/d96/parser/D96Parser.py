@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3B")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3A")
         buf.write("\u021a\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -146,7 +146,7 @@ def serializedATN():
         buf.write("\u0111\3\2\2\2\u010f\u010d\3\2\2\2\u010f\u0110\3\2\2\2")
         buf.write("\u0110+\3\2\2\2\u0111\u010f\3\2\2\2\u0112\u0113\b\27\1")
         buf.write("\2\u0113\u0114\5.\30\2\u0114\u011a\3\2\2\2\u0115\u0116")
-        buf.write("\f\4\2\2\u0116\u0117\7\60\2\2\u0117\u0119\5.\30\2\u0118")
+        buf.write("\f\4\2\2\u0116\u0117\7\61\2\2\u0117\u0119\5.\30\2\u0118")
         buf.write("\u0115\3\2\2\2\u0119\u011c\3\2\2\2\u011a\u0118\3\2\2\2")
         buf.write("\u011a\u011b\3\2\2\2\u011b-\3\2\2\2\u011c\u011a\3\2\2")
         buf.write("\2\u011d\u011e\5\60\31\2\u011e\u011f\7-\2\2\u011f\u0120")
@@ -174,8 +174,8 @@ def serializedATN():
         buf.write("\3\2\2\2\u014e9\3\2\2\2\u014f\u014d\3\2\2\2\u0150\u0151")
         buf.write("\7\63\2\2\u0151\u0152\5\32\16\2\u0152\u0153\7\64\2\2\u0153")
         buf.write(";\3\2\2\2\u0154\u0155\7\65\2\2\u0155\u0156\5\34\17\2\u0156")
-        buf.write("\u0157\7\66\2\2\u0157=\3\2\2\2\u0158\u015e\7;\2\2\u0159")
-        buf.write("\u015e\7<\2\2\u015a\u015e\5r:\2\u015b\u015e\7=\2\2\u015c")
+        buf.write("\u0157\7\66\2\2\u0157=\3\2\2\2\u0158\u015e\7:\2\2\u0159")
+        buf.write("\u015e\7;\2\2\u015a\u015e\5r:\2\u015b\u015e\7<\2\2\u015c")
         buf.write("\u015e\5@!\2\u015d\u0158\3\2\2\2\u015d\u0159\3\2\2\2\u015d")
         buf.write("\u015a\3\2\2\2\u015d\u015b\3\2\2\2\u015d\u015c\3\2\2\2")
         buf.write("\u015e?\3\2\2\2\u015f\u0160\7\13\2\2\u0160\u0162\7\63")
@@ -185,24 +185,24 @@ def serializedATN():
         buf.write("\5H%\2\u0169\u016c\5J&\2\u016a\u016c\5L\'\2\u016b\u0166")
         buf.write("\3\2\2\2\u016b\u0167\3\2\2\2\u016b\u0168\3\2\2\2\u016b")
         buf.write("\u0169\3\2\2\2\u016b\u016a\3\2\2\2\u016cC\3\2\2\2\u016d")
-        buf.write("\u0172\7;\2\2\u016e\u016f\7/\2\2\u016f\u0171\7;\2\2\u0170")
+        buf.write("\u0172\7:\2\2\u016e\u016f\7/\2\2\u016f\u0171\7:\2\2\u0170")
         buf.write("\u016e\3\2\2\2\u0171\u0174\3\2\2\2\u0172\u0170\3\2\2\2")
         buf.write("\u0172\u0173\3\2\2\2\u0173E\3\2\2\2\u0174\u0172\3\2\2")
-        buf.write("\2\u0175\u017a\7<\2\2\u0176\u0177\7/\2\2\u0177\u0179\7")
-        buf.write("<\2\2\u0178\u0176\3\2\2\2\u0179\u017c\3\2\2\2\u017a\u0178")
+        buf.write("\2\u0175\u017a\7;\2\2\u0176\u0177\7/\2\2\u0177\u0179\7")
+        buf.write(";\2\2\u0178\u0176\3\2\2\2\u0179\u017c\3\2\2\2\u017a\u0178")
         buf.write("\3\2\2\2\u017a\u017b\3\2\2\2\u017bG\3\2\2\2\u017c\u017a")
         buf.write("\3\2\2\2\u017d\u0182\5r:\2\u017e\u017f\7/\2\2\u017f\u0181")
         buf.write("\5r:\2\u0180\u017e\3\2\2\2\u0181\u0184\3\2\2\2\u0182\u0180")
         buf.write("\3\2\2\2\u0182\u0183\3\2\2\2\u0183I\3\2\2\2\u0184\u0182")
-        buf.write("\3\2\2\2\u0185\u018a\7=\2\2\u0186\u0187\7/\2\2\u0187\u0189")
-        buf.write("\7=\2\2\u0188\u0186\3\2\2\2\u0189\u018c\3\2\2\2\u018a")
+        buf.write("\3\2\2\2\u0185\u018a\7<\2\2\u0186\u0187\7/\2\2\u0187\u0189")
+        buf.write("\7<\2\2\u0188\u0186\3\2\2\2\u0189\u018c\3\2\2\2\u018a")
         buf.write("\u0188\3\2\2\2\u018a\u018b\3\2\2\2\u018bK\3\2\2\2\u018c")
         buf.write("\u018a\3\2\2\2\u018d\u0192\5@!\2\u018e\u018f\7/\2\2\u018f")
         buf.write("\u0191\5@!\2\u0190\u018e\3\2\2\2\u0191\u0194\3\2\2\2\u0192")
         buf.write("\u0190\3\2\2\2\u0192\u0193\3\2\2\2\u0193M\3\2\2\2\u0194")
         buf.write("\u0192\3\2\2\2\u0195\u0196\7\13\2\2\u0196\u0197\7\65\2")
         buf.write("\2\u0197\u0198\5P)\2\u0198\u0199\7/\2\2\u0199\u019a\7")
-        buf.write(";\2\2\u019a\u019b\7\66\2\2\u019bO\3\2\2\2\u019c\u019f")
+        buf.write(":\2\2\u019a\u019b\7\66\2\2\u019bO\3\2\2\2\u019c\u019f")
         buf.write("\5\30\r\2\u019d\u019f\7\13\2\2\u019e\u019c\3\2\2\2\u019e")
         buf.write("\u019d\3\2\2\2\u019fQ\3\2\2\2\u01a0\u01a1\5\34\17\2\u01a1")
         buf.write("\u01a2\5T+\2\u01a2S\3\2\2\2\u01a3\u01a4\7\65\2\2\u01a4")
@@ -225,7 +225,7 @@ def serializedATN():
         buf.write("\5\\/\2\u01c7\u01c6\3\2\2\2\u01c7\u01c8\3\2\2\2\u01c8")
         buf.write("\u01c9\3\2\2\2\u01c9\u01ca\7.\2\2\u01ca[\3\2\2\2\u01cb")
         buf.write("\u01cc\7%\2\2\u01cc\u01cd\5\32\16\2\u01cd]\3\2\2\2\u01ce")
-        buf.write("\u01d3\7:\2\2\u01cf\u01d0\7/\2\2\u01d0\u01d2\7:\2\2\u01d1")
+        buf.write("\u01d3\79\2\2\u01cf\u01d0\7/\2\2\u01d0\u01d2\79\2\2\u01d1")
         buf.write("\u01cf\3\2\2\2\u01d2\u01d5\3\2\2\2\u01d3\u01d1\3\2\2\2")
         buf.write("\u01d3\u01d4\3\2\2\2\u01d4_\3\2\2\2\u01d5\u01d3\3\2\2")
         buf.write("\2\u01d6\u01d7\5b\62\2\u01d7\u01d8\7%\2\2\u01d8\u01d9")
@@ -244,8 +244,8 @@ def serializedATN():
         buf.write("\u01f7\u01f9\5V,\2\u01f8\u01f6\3\2\2\2\u01f8\u01f9\3\2")
         buf.write("\2\2\u01f9g\3\2\2\2\u01fa\u01fb\7\b\2\2\u01fb\u01fc\7")
         buf.write("\63\2\2\u01fc\u01fd\79\2\2\u01fd\u01fe\7\f\2\2\u01fe\u01ff")
-        buf.write("\7;\2\2\u01ff\u0200\7\61\2\2\u0200\u0203\7;\2\2\u0201")
-        buf.write("\u0202\7\31\2\2\u0202\u0204\7;\2\2\u0203\u0201\3\2\2\2")
+        buf.write("\7:\2\2\u01ff\u0200\7\60\2\2\u0200\u0203\7:\2\2\u0201")
+        buf.write("\u0202\7\31\2\2\u0202\u0204\7:\2\2\u0203\u0201\3\2\2\2")
         buf.write("\u0203\u0204\3\2\2\2\u0204\u0205\3\2\2\2\u0205\u0206\7")
         buf.write("\64\2\2\u0206\u0207\5V,\2\u0207i\3\2\2\2\u0208\u0209\7")
         buf.write("\3\2\2\u0209\u020a\7.\2\2\u020ak\3\2\2\2\u020b\u020c\7")
@@ -281,7 +281,7 @@ class D96Parser ( Parser ):
                      "'Self'", "'+'", "'-'", "'*'", "'/'", "'%'", "'!'", 
                      "'&&'", "'||'", "'=='", "'='", "'!='", "'>'", "'>='", 
                      "'<'", "'<='", "'==.'", "'+.'", "'::'", "';'", "','", 
-                     "'.'", "'..'", "':'", "'('", "')'", "'['", "']'", "'{'", 
+                     "'..'", "'.'", "':'", "'('", "')'", "'['", "']'", "'{'", 
                      "'}'" ]
 
     symbolicNames = [ "<INVALID>", "BREAK", "CONTINUE", "IF", "ELSEIF", 
@@ -291,10 +291,10 @@ class D96Parser ( Parser ):
                       "NEW", "BY", "WRITELN", "SELF", "PLUS", "MINUS", "STAR", 
                       "DIV", "MOD", "NOT", "ANDAND", "OROR", "EQ", "ASSIGN", 
                       "NE", "GT", "GE", "LS", "LE", "STR_CMP", "STR_CONCAT", 
-                      "DCL", "SM", "CM", "DOT", "DDOT", "CL", "LP", "RP", 
-                      "LSB", "RSB", "LCB", "RCB", "IDENTIFIER", "IDENTIFIER_NORMAL", 
-                      "INT_LIT", "FLOAT_LIT", "STRING_LIT", "WS", "BLOCKCOMMENT", 
-                      "ERROR_CHAR", "UNCLOSE_STRING", "ILLEGAL_ESCAPE" ]
+                      "DCL", "SM", "CM", "DDOT", "DOT", "CL", "LP", "RP", 
+                      "LSB", "RSB", "LCB", "RCB", "IDENTIFIER", "INT_LIT", 
+                      "FLOAT_LIT", "STRING_LIT", "WS", "BLOCKCOMMENT", "ERROR_CHAR", 
+                      "UNCLOSE_STRING", "ILLEGAL_ESCAPE" ]
 
     RULE_program = 0
     RULE_class_decl = 1
@@ -415,8 +415,8 @@ class D96Parser ( Parser ):
     DCL=43
     SM=44
     CM=45
-    DOT=46
-    DDOT=47
+    DDOT=46
+    DOT=47
     CL=48
     LP=49
     RP=50
@@ -425,15 +425,14 @@ class D96Parser ( Parser ):
     LCB=53
     RCB=54
     IDENTIFIER=55
-    IDENTIFIER_NORMAL=56
-    INT_LIT=57
-    FLOAT_LIT=58
-    STRING_LIT=59
-    WS=60
-    BLOCKCOMMENT=61
-    ERROR_CHAR=62
-    UNCLOSE_STRING=63
-    ILLEGAL_ESCAPE=64
+    INT_LIT=56
+    FLOAT_LIT=57
+    STRING_LIT=58
+    WS=59
+    BLOCKCOMMENT=60
+    ERROR_CHAR=61
+    UNCLOSE_STRING=62
+    ILLEGAL_ESCAPE=63
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -3615,11 +3614,11 @@ class D96Parser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER_NORMAL(self, i:int=None):
+        def IDENTIFIER(self, i:int=None):
             if i is None:
-                return self.getTokens(D96Parser.IDENTIFIER_NORMAL)
+                return self.getTokens(D96Parser.IDENTIFIER)
             else:
-                return self.getToken(D96Parser.IDENTIFIER_NORMAL, i)
+                return self.getToken(D96Parser.IDENTIFIER, i)
 
         def CM(self, i:int=None):
             if i is None:
@@ -3647,7 +3646,7 @@ class D96Parser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 460
-            self.match(D96Parser.IDENTIFIER_NORMAL)
+            self.match(D96Parser.IDENTIFIER)
             self.state = 465
             self._errHandler.sync(self)
             _la = self._input.LA(1)
@@ -3655,7 +3654,7 @@ class D96Parser ( Parser ):
                 self.state = 461
                 self.match(D96Parser.CM)
                 self.state = 462
-                self.match(D96Parser.IDENTIFIER_NORMAL)
+                self.match(D96Parser.IDENTIFIER)
                 self.state = 467
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)

@@ -1,1 +1,1 @@
-Var r, s: Int;
+Class Diagram{}

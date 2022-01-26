@@ -79,13 +79,13 @@ class LexerSuite(unittest.TestCase):
     def test_case_138(self):
         self.assertTrue(TestLexer.test("""7E-10 7e-10 7E+10 7e+10""","7E-10,7e-10,7E+10,7e+10,<EOF>",138))
     def test_case_139(self):
-        self.assertTrue(TestLexer.test("""1_234.567 1_23_4.56_7""","1234.567,1234.567,<EOF>",139))
+        self.assertTrue(TestLexer.test("""1234.567 ""","1234.567,<EOF>",139))
     def test_case_140(self):
-        self.assertTrue(TestLexer.test("""1_23.12_3""","123.123,<EOF>",140))
+        self.assertTrue(TestLexer.test("""123.123""","123.123,<EOF>",140))
     def test_case_141(self):
         self.assertTrue(TestLexer.test("""123.""","123.,<EOF>",141))
     def test_case_142(self):
-        self.assertTrue(TestLexer.test(""".123e10 .12_3e1_0""",".123e10,.123e10,<EOF>",142))
+        self.assertTrue(TestLexer.test(""".123e10 .123e10""",".123e10,.123e10,<EOF>",142))
     def test_case_143(self):
         self.assertTrue(TestLexer.test(""".123e-10""",".123e-10,<EOF>",143))
     def test_case_144(self):
@@ -147,10 +147,8 @@ class LexerSuite(unittest.TestCase):
     def test_case_172(self):
         self.assertTrue(TestLexer.test("""Array(0x1A,0b01)""","Array,(,0x1A,,,0b01,),<EOF>",172))
     def test_case_173(self):
-        self.assertTrue(TestLexer.test("""\"This is a string containing tab \t\"""","\"This is a string containing tab \t\",<EOF>",173))
+        self.assertTrue(TestLexer.test("""Var r, s: Int;""","Var,r,,,s,:,Int,;,<EOF>",173))
     def test_case_174(self):
-        self.assertTrue(TestLexer.test("""Var r, s: Int;""","Var,r,,,s,:,Int,;,<EOF>",174))
+        self.assertTrue(TestLexer.test("""Class Diagram{}""","Class,Diagram,{,},<EOF>",174))
     def test_case_175(self):
-        self.assertTrue(TestLexer.test("""Class Diagram{}""","Class,Diagram,{,},<EOF>",175))
-    def test_case_176(self):
-        self.assertTrue(TestLexer.test("""main(){}""","main,(,),{,},<EOF>",176))
+        self.assertTrue(TestLexer.test("""main(){}""","main,(,),{,},<EOF>",175))

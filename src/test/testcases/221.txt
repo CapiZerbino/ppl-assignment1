@@ -1,0 +1,19 @@
+Class Shape{
+    Val width: Float;
+    Val height: Float;
+    Constructor(height: Float; width: Float){
+        width = width;
+        height = height;
+    }
+    getArea(){
+        Return width * height;
+    }
+}
+Class Test_Expression{
+    Val getArea: Float = Shape.getArea();
+}
+Class Program{
+    main(){
+
+    }
+}
