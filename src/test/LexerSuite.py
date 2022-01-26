@@ -73,7 +73,7 @@ class LexerSuite(unittest.TestCase):
     def test_case_135(self):
         self.assertTrue(TestLexer.test("""'123'""","Error Token '",135))
     def test_case_136(self):
-        self.assertTrue(TestLexer.test("""1.234 1.23_4""","1.234,1.234,<EOF>",136))
+        self.assertTrue(TestLexer.test("""1.234""","1.234,<EOF>",136))
     def test_case_137(self):
         self.assertTrue(TestLexer.test("""1.2e3 1.2E3""","1.2e3,1.2E3,<EOF>",137))
     def test_case_138(self):

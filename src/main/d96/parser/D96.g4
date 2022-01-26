@@ -237,7 +237,7 @@ FLOAT_LIT
 	// | DECIMAL DECIMAL_FLOAT? EXPONENT){self.text = self.text.replace("_", "")}
 	:(DECIMAL DOT DIGIT+ EXPONENT?
 	| DECIMAL EXPONENT
-	| DOT DIGIT+ EXPONENT?
+	| DOT DIGIT* EXPONENT?
 	){self.text = self.text.replace("_", "")}
 	;
 bool_lit: TRUE | FALSE;
