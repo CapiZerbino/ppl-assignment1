@@ -1,8 +1,5 @@
 import unittest
-
 from TestUtils import TestParser
-
-
 class ParserSuite(unittest.TestCase):
 
     def test_case_201(self):
@@ -247,7 +244,7 @@ Class Program{
         self.assertTrue(TestParser.test(
 """Class Diagram{
 }"""
-    ,"Error on line 2 col 1: <EOF>",224))
+    ,"successful",224))
     def test_case_225(self):
         self.assertTrue(TestParser.test(
 """Class Diagram{
@@ -328,7 +325,7 @@ Class Program{
         Var a : Int = 12;
         If(a > 0){
             a = 0x0A + 0x12_ABCD; 
-            Foreach(i In 1..100 By 2){
+            Foreach(i In 1 .. 100 By 2){
                 a =  a[1+2+3];
                 a = a::getShape();
                 Continue;
@@ -341,3 +338,7 @@ Class Program{
     }
 }"""
     ,"successful",229))
+    def test_case_230(self):
+        self.assertTrue(TestParser.test(
+"""Class main{}"""
+    ,"successful",230))

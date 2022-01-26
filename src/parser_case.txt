@@ -334,3 +334,7 @@ Class Program{
     }
 }
 out:successful
+---
+in:
+Class main{}
+out:successful

@@ -223,7 +223,7 @@ RCB : '}';
 //tokens
 IDENTIFIER:ID_normal| ID_static;
 // IDENTIFIER_NORMAL: ID_normal;
-INT_LIT:(DECIMAL|OCTAL|HEX|BINARY|'0'){self.text = self.text.replace("_", "")};
+
 // FLOAT_LIT
 // 	: (DECIMAL+ DOT (DECIMAL | EXPONENT)* // 1 | 1.5 | 1.e-4
 // 	| DECIMAL+ DOT DECIMAL+ EXPONENT? // (1).5(e-4)
@@ -235,11 +235,12 @@ FLOAT_LIT
 	// :  (DECIMAL DECIMAL_FLOAT EXPONENT?
 	// | DECIMAL? DECIMAL_FLOAT EXPONENT
 	// | DECIMAL DECIMAL_FLOAT? EXPONENT){self.text = self.text.replace("_", "")}
-	:(DECIMAL DOT DIGIT+ EXPONENT?
+	:(DECIMAL DOT DIGIT* EXPONENT?
 	| DECIMAL EXPONENT
 	| DOT DIGIT* EXPONENT?
 	){self.text = self.text.replace("_", "")}
 	;
+INT_LIT:(DECIMAL|OCTAL|HEX|BINARY|'0'){self.text = self.text.replace("_", "")};
 bool_lit: TRUE | FALSE;
 
 STRING_LIT: '"' STR_CHAR* '"'{ self.text = self.text[1:-1] };
