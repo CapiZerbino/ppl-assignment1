@@ -1,8 +1,7 @@
-Class Program {
-    main(){
-        Var $num1, $num2, $num3, $num4 :  Boolean = True, True, False;
-        Myfunc(){
-            a = 1;
+
+        Class Program {
+            main(){
+                Return Animal.getDog().bark();
+            }
         }
-    }
-}
+        

@@ -1,7 +1,11 @@
-Class Diagram{
-} 
-Class Program{
-    main(){
-        a=3;
-    }
-}
+
+        Class ABC {
+            Var w, h : Int;
+
+            Constructor(w: Int; h: Int) {
+                Self.w = w;
+                Self.h = h;
+                Return;
+            }
+        }
+        

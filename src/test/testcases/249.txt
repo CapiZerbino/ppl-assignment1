@@ -1,0 +1,5 @@
+
+        Class Program {
+            Val student : Student = New $Student(name, age, course);
+        }
+        

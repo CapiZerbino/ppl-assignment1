@@ -1,0 +1,11 @@
+
+        Class Program {
+            main(){
+
+            }
+
+            $getName(){
+
+            }
+        }
+        

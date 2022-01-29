@@ -1,1 +1,7 @@
-Class _Shape {}
+
+        Class Program {
+            main() {
+                
+            }
+        }
+        

@@ -1,1 +1,1 @@
-main,(,),{,},<EOF>
+This isn\'t a string,<EOF>

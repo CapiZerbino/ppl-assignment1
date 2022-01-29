@@ -1,1 +1,1 @@
-Class,Program,{,main,(,),{,Out,.,printInt,(,Shape,::,$numOfShape,),;,},},<EOF>
+Val,My1stCons,,,My2ndCons,:,Int,=,1,+,5,,,2,;,<EOF>

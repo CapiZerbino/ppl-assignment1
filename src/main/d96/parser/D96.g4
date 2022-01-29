@@ -12,22 +12,32 @@ options {
 program: class_decl+  EOF;
 /* Class declaration */
 class_decl: CLASS classname LCB classbody RCB;
-classname: IDENTIFIER (':'IDENTIFIER)?;
+classname: ID_NORMAL (':'ID_NORMAL)?;
 classbody:(attribute_decl | method_decl)*;
 
-type_decl: primitive_types|array_decl | IDENTIFIER; 
+type_decl: primitive_types|array_decl | ID_NORMAL; 
 /* Attribute declaration */
-attribute_decl: (VAL|VAR) attributename_list CL type_decl attribute_init SM;
-attributename_list: IDENTIFIER (CM IDENTIFIER)*;
-attribute_init: (ASSIGN expression_list)?;
+// attribute_decl: (VAL|VAR) attributename_list CL type_decl attribute_init SM;
+// attributename_list: (ID_NORMAL | ID_STATIC) (CM (ID_NORMAL | ID_STATIC))*;
+// attribute_init: (ASSIGN expression_list)?;
+attribute_decl: (VAL|VAR) (attribute_init_stmt|attribute_stmt) SM;
+attribute_init_stmt: 
+	(ID_NORMAL | ID_STATIC) CL type_decl ASSIGN expression
+	| (ID_NORMAL | ID_STATIC) CM attribute_init_stmt CM expression
+  	;
+attribute_stmt: attributename_list CL type_decl ;
+attributename_list: (ID_NORMAL | ID_STATIC) (CM (ID_NORMAL | ID_STATIC))*;
+
+// attributename_list: (ID_NORMAL | ID_STATIC) (CM (ID_NORMAL | ID_STATIC))*;
+// attribute_init: (ASSIGN expression_list)?;
 
 /* Method declaration */
 method_decl
-	:((IDENTIFIER|CONSTRUCTOR) LP parameter_list? RP block_stmt)
+	:((ID_NORMAL| ID_STATIC |CONSTRUCTOR) LP parameter_list? RP block_stmt)
 	| (DESTRUCTOR LP RP block_stmt)
 	;
 parameter_list: parameter (SM parameter)*;
-parameter: IDENTIFIER (','IDENTIFIER)* CL type_decl;
+parameter: ID_NORMAL (','ID_NORMAL)* CL type_decl;
 
 
 
@@ -64,10 +74,10 @@ expr_7:
 	expr_7 (LSB | RSB) 
 	| expr_8;
 expr_8: 
-	expr_8 DOT expr_9 
+	expr_8 DOT ID_NORMAL postfix? (DOT ID_NORMAL postfix?)*
 	| expr_9;
 expr_9: 
-	expr_10 DCL expr_10 
+	expr_10 DCL ID_STATIC postfix? (DOT ID_NORMAL postfix?)*
 	| expr_10; 
 expr_10: 
 	NEW expr_10 
@@ -76,17 +86,18 @@ expr_11:
 	operands
 	| LP expression RP;
 operands
-	: IDENTIFIER
+	: ID_NORMAL
+	// | ID_STATIC
 	| literals
 	| call_expr
-	| operands postfix
+	| postfix
 	| operands postfix_array
 	| SELF
 	| NULL
 	;
-call_expr: IDENTIFIER LP expr_list? RP ;
-expr_list: expression (CM expression)*;
-postfix: LP expression_list RP;
+ call_expr: ID_NORMAL LP expression_list? RP ;
+// expr_list: expression (CM expression)*;
+postfix: LP expression_list? RP ;
 postfix_array: LSB expression RSB;
 literals
 	: INT_LIT
@@ -98,20 +109,21 @@ literals
 
 array_lit: ARRAY LP array_list? RP;
 array_list
-	: arrayitemint_list
-	| arrayitemfloat_list
-	| arrayitembool_list
-	| arrayitemstring_list
-	| arrayitemarray_list
+	: expression_list
+	| array_lit (CM array_lit)*
 	;
-arrayitemint_list: INT_LIT(','INT_LIT)*;
-arrayitemfloat_list:FLOAT_LIT(','FLOAT_LIT)* ;
-arrayitembool_list:bool_lit(','bool_lit)*;
-arrayitemstring_list:STRING_LIT(','STRING_LIT)*;
-arrayitemarray_list:array_lit(','array_lit)*;
+// arrayitemint_list: INT_LIT(','INT_LIT)*;
+// arrayitemfloat_list:FLOAT_LIT(','FLOAT_LIT)* ;
+// arrayitembool_list:bool_lit(','bool_lit)*;
+// arrayitemstring_list:STRING_LIT(','STRING_LIT)*;
+// arrayitemarray_list:array_lit(','array_lit)*;
 /* Array declaration */
-array_decl: ARRAY LSB element_type CM INT_LIT RSB;
-element_type: (primitive_types | ARRAY);
+array_decl: ARRAY LSB element_type CM INT_LIT RSB{
+print($INT_LIT.text)
+if(int($INT_LIT.text) < 1 or not(is_integer($INT_LIT.text))):
+	raise ErrorToken($INT_LIT.text)
+};
+element_type: (primitive_types | ARRAY | array_decl);
 
 
 
@@ -136,19 +148,19 @@ stmt_list
 	|continue_stmt
 	|return_stmt
 	|methodinvocation_stmt
-	|block_stmt
+	// |block_stmt
 	;
 vardecl_stmt:(VAL|VAR) varname_list CL type_decl var_init? SM;
 var_init: ASSIGN expression_list;
-varname_list: IDENTIFIER (CM IDENTIFIER)*;
+varname_list: ID_NORMAL (CM ID_NORMAL)*;
 
 assign_stmt: assign_lhs ASSIGN assign_tail SM;
-assign_lhs: IDENTIFIER | index_expression;
+assign_lhs: expression | index_expression;
 assign_tail: (assign_lhs ASSIGN assign_tail) | expression;
 
 if_stmt: IF LP expression RP block_stmt (ELSEIF LP expression RP block_stmt)* (ELSE block_stmt)?;
 
-forin_stmt: FOREACH LP IDENTIFIER IN INT_LIT DDOT INT_LIT (BY INT_LIT)?RP block_stmt;
+forin_stmt: FOREACH LP ID_NORMAL IN expression DDOT expression (BY expression)?RP block_stmt;
 
 break_stmt: BREAK SM;
 
@@ -156,7 +168,13 @@ continue_stmt: CONTINUE SM;
 
 return_stmt: RETURN expression? SM;
 
-methodinvocation_stmt: expression SM;
+methodinvocation_stmt: (methodinvo_instance | methodinvo_static);
+// methodinvo_static: DCL ID_STATIC; 
+// methodinvo_instance: DOT ID_NORMAL;
+methodinvo_instance: expression DOT ID_NORMAL postfix? methodpostfix* SM;
+methodinvo_static: ID_NORMAL DCL ID_STATIC postfix? methodpostfix* SM;
+
+methodpostfix: DOT ID_NORMAL postfix?;
 
 //LEXER
 
@@ -221,8 +239,10 @@ LCB : '{';
 RCB : '}';
 
 //tokens
-IDENTIFIER:ID_normal| ID_static;
-// IDENTIFIER_NORMAL: ID_normal;
+// IDENTIFIER:ID_normal| ID_static;
+ID_NORMAL: ID_normal;
+ID_STATIC: ID_static;
+
 
 // FLOAT_LIT
 // 	: (DECIMAL+ DOT (DECIMAL | EXPONENT)* // 1 | 1.5 | 1.e-4
@@ -231,16 +251,18 @@ IDENTIFIER:ID_normal| ID_static;
 // 	| DOT DECIMAL* EXPONENT?
 // 	){self.text = self.text.replace("_", "")}
 // 	;
+INT_LIT:(DECIMAL|OCTAL|HEX|BINARY|'0'){self.text = self.text.replace("_","")
+	};
 FLOAT_LIT
 	// :  (DECIMAL DECIMAL_FLOAT EXPONENT?
 	// | DECIMAL? DECIMAL_FLOAT EXPONENT
 	// | DECIMAL DECIMAL_FLOAT? EXPONENT){self.text = self.text.replace("_", "")}
-	:(DECIMAL DOT DIGIT* EXPONENT?
-	| DECIMAL EXPONENT
-	| DOT DIGIT* EXPONENT?
+	:(DIGIT(DIGIT|'_')* DOT DIGIT+ EXPONENT?
+	| DIGIT(DIGIT|'_')*  EXPONENT
+	| DOT DIGIT?(DIGIT|'_')*  EXPONENT
 	){self.text = self.text.replace("_", "")}
 	;
-INT_LIT:(DECIMAL|OCTAL|HEX|BINARY|'0'){self.text = self.text.replace("_", "")};
+
 bool_lit: TRUE | FALSE;
 
 STRING_LIT: '"' STR_CHAR* '"'{ self.text = self.text[1:-1] };
@@ -248,15 +270,19 @@ STRING_LIT: '"' STR_CHAR* '"'{ self.text = self.text[1:-1] };
 //fragment
 fragment ID_normal: [a-zA-Z_][a-zA-Z0-9_]*;
 
-fragment ID_static: '$'[a-zA-Z_][a-zA-Z0-9_]*;
+fragment ID_static: '$'[a-zA-Z0-9_][a-zA-Z0-9_]*;
 
-fragment DECIMAL: [0-9]+('_'[0-9]+)*;
+// fragment OCTAL: '0'[0-7][_0-7]*;
+fragment OCTAL: '0'[0-7]('_'?[0-7]+)*;
 
-fragment OCTAL: '0'[0-7]+('_'[0-7]+)*;
+// fragment HEX: '0'[xX][0-9A-F][_0-9A-F]*;
+fragment HEX: '0'[xX][0-9A-F]('_'?[0-9A-F]+)*;
 
-fragment HEX: '0'[xX][0-9A-F]+('_'[0-9A-F]+)*;
+// fragment BINARY: '0'[bB][01][_01]*;
+fragment BINARY: '0'[bB][01]('_'?[01]+)*;
 
-fragment BINARY: '0'[bB][01]+('_'[01]+)*;
+
+fragment DECIMAL: [1-9]('_'?[0-9]+)*;
 
 fragment DECIMAL_FLOAT: DOT DECIMAL?;
 
@@ -268,20 +294,13 @@ fragment EXPONENT: [eE] SIGN? DECIMAL ;
 
 fragment SIGN: [+-] ;
 
-fragment ESC_ILLEGAL: '\\' ~[btnfr"'\\] | ~'\\' ; 
-
-fragment STR_CHAR: ~[\n\r"\\] | ESC_ACCEPT ;
-
-fragment ESC_ACCEPT: '\\' [btnfr'\\] ;
 
 //skip
-WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
+WS: [ \t\b\f\r\n]+ -> skip; // skip spaces, tabs, newlines
 BLOCKCOMMENT: '##' .*? '##'-> skip;
 
 
 //error
-ERROR_CHAR: .{raise ErrorToken(self.text)};
-
 UNCLOSE_STRING: '"' STR_CHAR* 
 	{
 		y = str(self.text)
@@ -296,5 +315,13 @@ ILLEGAL_ESCAPE: '"' STR_CHAR* ESC_ILLEGAL
 	{
 		y = str(self.text)
 		raise IllegalEscape(y[1:])
+	}
+	;
+fragment STR_CHAR: ~[\n\r"\\EOF] | ESC_ACCEPT | '\'"' ;
+fragment ESC_ACCEPT: '\\' [btnfr'\\] ;
+fragment ESC_ILLEGAL: '\\' ~[btnfr'\\] ;
+ERROR_CHAR: .
+	{
+		raise ErrorToken(self.text)
 	}
 	;

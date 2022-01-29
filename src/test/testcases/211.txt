@@ -1,3 +1,7 @@
-Class Test_Attribute_2{
-    Val My2ndCons, My1ndCons;
-}
+
+        Class Program {
+            main(ant, bee, cat: Int; $dog: Float) {
+
+            }
+        }
+        

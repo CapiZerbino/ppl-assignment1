@@ -1,1 +1,1 @@
-main(){}
+ "This is a string \ncontaining new line" 

@@ -1,0 +1,8 @@
+
+                Class Shape{
+                    foo(){
+                        a = New X().Y();
+                        Var a: Array[Int, 0];
+                    }
+                }
+            

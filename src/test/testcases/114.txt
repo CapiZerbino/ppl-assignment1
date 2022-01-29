@@ -1,1 +1,1 @@
-Class Triangle::Shape {}
+ abc 1A2 

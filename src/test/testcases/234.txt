@@ -1,0 +1,6 @@
+
+        Class ArrayLit {
+            Var a: Array[Int, 3] = Array(1 + 2, 345, 6 * 8);
+            ## Var b: Array = 123; ##
+        }
+        

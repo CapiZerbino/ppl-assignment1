@@ -1,1 +1,1 @@
-main(){}
+ "This isn\'t a string" 

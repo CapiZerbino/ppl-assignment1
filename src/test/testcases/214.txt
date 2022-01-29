@@ -1,3 +1,17 @@
-Class Test_Method{
-    Destructor (){}
-}
+
+        Class Dog {
+            Val a, $b, $c, d : Int = 1, 2, 3, 4, 5;
+
+            Constructor(height : Float; age : Int;  is_tall : Boolean) {
+                
+            }
+
+            Destructor() {
+
+            }
+
+            main(action: String) {
+                
+            }
+        }
+        

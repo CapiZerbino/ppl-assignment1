@@ -11,7 +11,7 @@ class LexerSuite(unittest.TestCase):'''
 
 templateString ='''
     def test_case_{}(self):
-        self.assertTrue(TestLexer.test(\"\"\"{}\"\"\",\"{}\",{}))'''
+        self.assertTrue(TestLexer.test(\"\"\" {} \"\"\",\"\"\"{}\"\"\",{}))'''
 
 
 parserHeader ='''import unittest

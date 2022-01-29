@@ -1,1 +1,1 @@
-main,(,),{,},<EOF>
+This is a string \ncontaining new line,<EOF>

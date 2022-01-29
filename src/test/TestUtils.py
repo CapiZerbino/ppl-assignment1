@@ -1,6 +1,9 @@
-import sys,os
+import os
+import sys
+
 from antlr4 import *
-from antlr4.error.ErrorListener import ConsoleErrorListener,ErrorListener
+from antlr4.error.ErrorListener import ConsoleErrorListener, ErrorListener
+
 if not './main/d96/parser/' in sys.path:
     sys.path.append('./main/d96/parser/')
 if os.path.isdir('../target/main/d96/parser') and not '../target/main/d96/parser/' in sys.path:
@@ -8,6 +11,7 @@ if os.path.isdir('../target/main/d96/parser') and not '../target/main/d96/parser
 from D96Lexer import D96Lexer
 from D96Parser import D96Parser
 from lexererr import *
+
 # from ASTGeneration import ASTGeneration
 # from StaticCheck import StaticChecker
 # from StaticError import *

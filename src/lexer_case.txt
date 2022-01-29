@@ -7,6 +7,7 @@
 ##header2<EOF>##|<EOF>
 abc12d a1bCd|abc12d,a1bCd,<EOF>
 ab?cd|ab,Error Token ?
+ab!cd|ab,!,cd,<EOF>
 a12b_Dd|a12b_Dd,<EOF>
 12abc|12,abc,<EOF>
 12_Abc|12,_Abc,<EOF>
@@ -26,8 +27,8 @@ Break Continue If Elseif Else Foreach True False Array In Int Float Boolean Stri
 0X1_ATB|0X1A,TB,<EOF>
 0b1_0201|0b10,201,<EOF>
 0b123|0b1,23,<EOF>
-1234-0982|1234,-,0982,<EOF>
-1234 abcd 0982|1234,abcd,0982,<EOF>
+1234-0982|1234,-,0,982,<EOF>
+1234 abcd 0982|1234,abcd,0,982,<EOF>
 984753aBc_4s|984753,aBc_4s,<EOF>
 -----9877|-,-,-,-,-,9877,<EOF>
 5*1+3/2%f|5,*,1,+,3,/,2,%,f,<EOF>
@@ -38,7 +39,6 @@ r = 111 + 55_658 * 0b111_11_111 / 0x1A67F5EE % 02425;|r,=,111,+,55658,*,0b111111
 7E-10 7e-10 7E+10 7e+10|7E-10,7e-10,7E+10,7e+10,<EOF>
 1234.567 |1234.567,<EOF>
 123.123|123.123,<EOF>
-123.|123.,<EOF>
 .123e10 .123e10|.123e10,.123e10,<EOF>
 .123e-10|.123e-10,<EOF>
 .e-123|.e-123,<EOF>
@@ -73,3 +73,21 @@ Array(0x1A,0b01)|Array,(,0x1A,,,0b01,),<EOF>
 Var r, s: Int;|Var,r,,,s,:,Int,;,<EOF>
 Class Diagram{}|Class,Diagram,{,},<EOF>
 main(){}|main,(,),{,},<EOF>
+"This is a string \ncontaining tab"|Unclosed String: This is a string 
+"This is a string \\ncontaining new line"|This is a string \\ncontaining new line,<EOF>
+update(gametime: GameTime){}|update,(,gametime,:,GameTime,),{,},<EOF>
+Foreach (i In 1..100 By 2)|Foreach,(,i,In,1,..,100,By,2,),<EOF>
+1..2e3|1,..,2e3,<EOF>
+.2e3|.2e3,<EOF>
+"This isn\\'t a string"|This isn\\'t a string,<EOF>
+"He asked me: '" Where is Join '""|He asked me: '" Where is Join '",<EOF>
+Class pIm:Ib_{Constructor (U,_53:Array [String ,0x41];_e1K:Array [Array [Array [Array [Array [Array [Int ,995],330_6],0b111110],034],54],076_5];_O2_:String ){} }Class F_P:_{}|Class,pIm,:,Ib_,{,Constructor,(,U_53,:,Array,[,String,,,,0x41,],;,_e1K,:,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Int,,,,995,],,,3306,],,,0b111110,],,,034,],,,54,],,,0765,],;,_O2_,:,String,),{,},},Class,F_P,:,_,{,},<EOF>
+"This string contains <EOF> EOF"|Unclosed String: This string contains <
+"abc\\h def"|Illegal Escape In String: abc\h
+111_111 222__222 _3333_4444 555_666_|111111,222,__222,_3333_4444,555666,_,<EOF>
+"abc\def"|Illegal Escape In String: abc\d
+0 00 0b000123 0B030123 000129 0x00123ASD 0X00123ASD|0,00,0b0001,23,0B0,30123,00012,9,0x00123A,SD,0X00123A,SD,<EOF>
+Class _{Destructor (){}_6(_:Array [String ,658685]){}Val __:Array [Array [Boolean ,47],01];}Class _:_{}Class _Z_3_:_{Constructor (){} }|Class,_,{,Destructor,(,),{,},_6,(,_,:,Array,[,String,,,658685,],),{,},Val,__,:,Array,[,Array,[,Boolean,,,47,],,,01,],;,},Class,_,:,_,{,},Class,_Z_3_,:,_,{,Constructor,(,),{,},},<EOF>
+Class e_{Val j,a7,$5,_,$6:Array [Array [Array [Array [Array [Array [Array [Array [Array [Array [String ,0b101],4],0130],0B1100011],8],0b101],2],4],4],0x5E];}|Class,e_,{,Val,j,,,a7,,,$5,,,_,,,$6,:,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,String,,,0b101,],,,4,],,,0130,],,,0B1100011,],,,8,],,,0b101,],,,2,],,,4,],,,4,],,,0x5E,],;,},<EOF>
+Class _:_{$g(_:Array [Float ,0xF_7A_A];Q0:Array [Boolean ,9_1_3_3_9];_:Int ;v,_,_0:Array [Array [Float ,0X5E],0xA]){_::$_();}Constructor (){} }|Class,_,:,_,{,$g,(,_,:,Array,[,Float,,,0xF7AA,],;,Q0,:,Array,[,Boolean,,,91339,],;,_,:,Int,;,v,,,_,,,_0,:,Array,[,Array,[,Float,,,0X5E,],,,0xA,],),{,_,::,$_,(,),;,},Constructor,(,),{,},},<EOF>
+Class _cW{$v70(y:String ;ON,_W4k,LSg_:Array [Float ,64];Y:I5){}Constructor (___R:Array [Array [String ,0X7C_8],0x3D];_,v374T98,f170,x3:__){} }|Class,_cW,{,$v70,(,y,:,String,;,ON,,,_W4k,,,LSg_,:,Array,[,Float,,,64,],;,Y,:,I5,),{,},Constructor,(,___R,:,Array,[,Array,[,String,,,0X7C8,],,,0x3D,],;,_,,,v374T98,,,f170,,,x3,:,__,),{,},},<EOF>

@@ -1,2 +1,2 @@
-$avs
- avg
+ $avs
+ avg 

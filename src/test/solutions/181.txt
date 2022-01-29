@@ -1,1 +1,1 @@
-Class,Diagram,{,},<EOF>
+.2e3,<EOF>

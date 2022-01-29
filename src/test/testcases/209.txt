@@ -1,3 +1,7 @@
-Class Test_Attribute_2{
-    Val Var, My2ndCons: Int;
-}
+
+        Class Program {
+            Destructor() {
+
+            }
+        }
+        

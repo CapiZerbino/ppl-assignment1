@@ -1,3 +1,7 @@
-Class Test_Attribute_2{
-    My1stCons, My2ndCons: Int;
-}
+
+        Class Program {
+            Constructor(a, b, c: Int; d, e, f: Int; g, h: Float) {
+                
+            }
+        }
+        

@@ -1,8 +1,5 @@
-Class Test_Expression{
-    Val isSame: Boolean = "This is my string" ==. "This is also another string";
-}
-Class Program{
-    main(){
+
+        Class IntLit {
+            Val a : Int = 0b102;
+        }
         
-    }
-}

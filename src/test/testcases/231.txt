@@ -1,0 +1,7 @@
+
+        Class ArrayLit {
+            main(){
+                Var a : Array[Int, -1];
+            }
+        }
+        

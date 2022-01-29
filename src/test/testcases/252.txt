@@ -1,0 +1,8 @@
+
+        Class Program {
+            main() {
+                Val $student : Int = 1 + 5 * 9 / 10 % 3;
+                Var teacher : Boolean = a >= b || c < d ;
+            }
+        }        
+        

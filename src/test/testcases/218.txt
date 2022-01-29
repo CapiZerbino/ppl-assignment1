@@ -1,10 +1,5 @@
-Class Test_Expression{
-    Var isCorrect: Boolean = True;
-    Var isWrong: Boolean = False;
-    Val x : Boolean = !isCorrect && isWrong;
-}
-Class Program{
-    main(){
+
+        Class IntLit {
+            Val a : Int = 1__2345;
+        }
         
-    }
-}

@@ -1,2 +1,5 @@
-Class Diagram{
-}
+
+        Class ArrayLit {
+            Val a : Array[Int,0] = Array();
+        }
+        

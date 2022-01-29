@@ -1,0 +1,9 @@
+
+        Class Program {
+            Var a,b: Int;
+
+            If (a > 0) {
+            ## Do something ##
+            }
+        }
+        

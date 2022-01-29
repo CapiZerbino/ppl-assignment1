@@ -3,152 +3,188 @@ from TestUtils import TestLexer
 class LexerSuite(unittest.TestCase):
 
     def test_case_101(self):
-        self.assertTrue(TestLexer.test("""##header1##""","<EOF>",101))
+        self.assertTrue(TestLexer.test(""" ##header1## ""","""<EOF>""",101))
     def test_case_102(self):
-        self.assertTrue(TestLexer.test("""##header2#header3##""","<EOF>",102))
+        self.assertTrue(TestLexer.test(""" ##header2#header3## ""","""<EOF>""",102))
     def test_case_103(self):
-        self.assertTrue(TestLexer.test("""##header2## var x \n ##header3##""","var,x,<EOF>",103))
+        self.assertTrue(TestLexer.test(""" ##header2## var x \n ##header3## ""","""var,x,<EOF>""",103))
     def test_case_104(self):
-        self.assertTrue(TestLexer.test("""##header2#abc#header3##""","<EOF>",104))
+        self.assertTrue(TestLexer.test(""" ##header2#abc#header3## ""","""<EOF>""",104))
     def test_case_105(self):
-        self.assertTrue(TestLexer.test("""##header1\n header2\n header3\t ##""","<EOF>",105))
+        self.assertTrue(TestLexer.test(""" ##header1\n header2\n header3\t ## ""","""<EOF>""",105))
     def test_case_106(self):
-        self.assertTrue(TestLexer.test("""##header1#""","Error Token #",106))
+        self.assertTrue(TestLexer.test(""" ##header1# ""","""Error Token #""",106))
     def test_case_107(self):
-        self.assertTrue(TestLexer.test("""##header2<EOF>##""","<EOF>",107))
+        self.assertTrue(TestLexer.test(""" ##header2<EOF>## ""","""<EOF>""",107))
     def test_case_108(self):
-        self.assertTrue(TestLexer.test("""abc12d a1bCd""","abc12d,a1bCd,<EOF>",108))
+        self.assertTrue(TestLexer.test(""" abc12d a1bCd ""","""abc12d,a1bCd,<EOF>""",108))
     def test_case_109(self):
-        self.assertTrue(TestLexer.test("""ab?cd""","ab,Error Token ?",109))
+        self.assertTrue(TestLexer.test(""" ab?cd ""","""ab,Error Token ?""",109))
     def test_case_110(self):
-        self.assertTrue(TestLexer.test("""a12b_Dd""","a12b_Dd,<EOF>",110))
+        self.assertTrue(TestLexer.test(""" ab!cd ""","""ab,!,cd,<EOF>""",110))
     def test_case_111(self):
-        self.assertTrue(TestLexer.test("""12abc""","12,abc,<EOF>",111))
+        self.assertTrue(TestLexer.test(""" a12b_Dd ""","""a12b_Dd,<EOF>""",111))
     def test_case_112(self):
-        self.assertTrue(TestLexer.test("""12_Abc""","12,_Abc,<EOF>",112))
+        self.assertTrue(TestLexer.test(""" 12abc ""","""12,abc,<EOF>""",112))
     def test_case_113(self):
-        self.assertTrue(TestLexer.test("""abc 1A2""","abc,1,A2,<EOF>",113))
+        self.assertTrue(TestLexer.test(""" 12_Abc ""","""12,_Abc,<EOF>""",113))
     def test_case_114(self):
-        self.assertTrue(TestLexer.test("""Class Triangle::Shape {}""","Class,Triangle,::,Shape,{,},<EOF>",114))
+        self.assertTrue(TestLexer.test(""" abc 1A2 ""","""abc,1,A2,<EOF>""",114))
     def test_case_115(self):
-        self.assertTrue(TestLexer.test("""Val My1stCons, My2ndCons: Int = 1 + 5, 2;""","Val,My1stCons,,,My2ndCons,:,Int,=,1,+,5,,,2,;,<EOF>",115))
+        self.assertTrue(TestLexer.test(""" Class Triangle::Shape {} ""","""Class,Triangle,::,Shape,{,},<EOF>""",115))
     def test_case_116(self):
-        self.assertTrue(TestLexer.test("""Class Program {main() {Out.printInt(Shape::$numOfShape);}}""","Class,Program,{,main,(,),{,Out,.,printInt,(,Shape,::,$numOfShape,),;,},},<EOF>",116))
+        self.assertTrue(TestLexer.test(""" Val My1stCons, My2ndCons: Int = 1 + 5, 2; ""","""Val,My1stCons,,,My2ndCons,:,Int,=,1,+,5,,,2,;,<EOF>""",116))
     def test_case_117(self):
-        self.assertTrue(TestLexer.test("""Break Continue If Elseif Else Foreach True False Array In Int Float Boolean String Return Null Class Val Var Constructor Destructor New By WriteLn writeln WRITELN Self""","Break,Continue,If,Elseif,Else,Foreach,True,False,Array,In,Int,Float,Boolean,String,Return,Null,Class,Val,Var,Constructor,Destructor,New,By,WriteLn,writeln,WRITELN,Self,<EOF>",117))
+        self.assertTrue(TestLexer.test(""" Class Program {main() {Out.printInt(Shape::$numOfShape);}} ""","""Class,Program,{,main,(,),{,Out,.,printInt,(,Shape,::,$numOfShape,),;,},},<EOF>""",117))
     def test_case_118(self):
-        self.assertTrue(TestLexer.test("""+ - * / % ! && == = != < <= > >= ==. +. . .. ::""","+,-,*,/,%,!,&&,==,=,!=,<,<=,>,>=,==.,+.,.,..,::,<EOF>",118))
+        self.assertTrue(TestLexer.test(""" Break Continue If Elseif Else Foreach True False Array In Int Float Boolean String Return Null Class Val Var Constructor Destructor New By WriteLn writeln WRITELN Self ""","""Break,Continue,If,Elseif,Else,Foreach,True,False,Array,In,Int,Float,Boolean,String,Return,Null,Class,Val,Var,Constructor,Destructor,New,By,WriteLn,writeln,WRITELN,Self,<EOF>""",118))
     def test_case_119(self):
-        self.assertTrue(TestLexer.test("""()[].,;:{}""","(,),[,],.,,,;,:,{,},<EOF>",119))
+        self.assertTrue(TestLexer.test(""" + - * / % ! && == = != < <= > >= ==. +. . .. :: ""","""+,-,*,/,%,!,&&,==,=,!=,<,<=,>,>=,==.,+.,.,..,::,<EOF>""",119))
     def test_case_120(self):
-        self.assertTrue(TestLexer.test("""1_4561_13""","1456113,<EOF>",120))
+        self.assertTrue(TestLexer.test(""" ()[].,;:{} ""","""(,),[,],.,,,;,:,{,},<EOF>""",120))
     def test_case_121(self):
-        self.assertTrue(TestLexer.test("""1234""","1234,<EOF>",121))
+        self.assertTrue(TestLexer.test(""" 1_4561_13 ""","""1456113,<EOF>""",121))
     def test_case_122(self):
-        self.assertTrue(TestLexer.test("""0123""","0123,<EOF>",122))
+        self.assertTrue(TestLexer.test(""" 1234 ""","""1234,<EOF>""",122))
     def test_case_123(self):
-        self.assertTrue(TestLexer.test("""0x1_A""","0x1A,<EOF>",123))
+        self.assertTrue(TestLexer.test(""" 0123 ""","""0123,<EOF>""",123))
     def test_case_124(self):
-        self.assertTrue(TestLexer.test("""0b11111111""","0b11111111,<EOF>",124))
+        self.assertTrue(TestLexer.test(""" 0x1_A ""","""0x1A,<EOF>""",124))
     def test_case_125(self):
-        self.assertTrue(TestLexer.test("""0""","0,<EOF>",125))
+        self.assertTrue(TestLexer.test(""" 0b11111111 ""","""0b11111111,<EOF>""",125))
     def test_case_126(self):
-        self.assertTrue(TestLexer.test("""0X1_ATB""","0X1A,TB,<EOF>",126))
+        self.assertTrue(TestLexer.test(""" 0 ""","""0,<EOF>""",126))
     def test_case_127(self):
-        self.assertTrue(TestLexer.test("""0b1_0201""","0b10,201,<EOF>",127))
+        self.assertTrue(TestLexer.test(""" 0X1_ATB ""","""0X1A,TB,<EOF>""",127))
     def test_case_128(self):
-        self.assertTrue(TestLexer.test("""0b123""","0b1,23,<EOF>",128))
+        self.assertTrue(TestLexer.test(""" 0b1_0201 ""","""0b10,201,<EOF>""",128))
     def test_case_129(self):
-        self.assertTrue(TestLexer.test("""1234-0982""","1234,-,0982,<EOF>",129))
+        self.assertTrue(TestLexer.test(""" 0b123 ""","""0b1,23,<EOF>""",129))
     def test_case_130(self):
-        self.assertTrue(TestLexer.test("""1234 abcd 0982""","1234,abcd,0982,<EOF>",130))
+        self.assertTrue(TestLexer.test(""" 1234-0982 ""","""1234,-,0,982,<EOF>""",130))
     def test_case_131(self):
-        self.assertTrue(TestLexer.test("""984753aBc_4s""","984753,aBc_4s,<EOF>",131))
+        self.assertTrue(TestLexer.test(""" 1234 abcd 0982 ""","""1234,abcd,0,982,<EOF>""",131))
     def test_case_132(self):
-        self.assertTrue(TestLexer.test("""-----9877""","-,-,-,-,-,9877,<EOF>",132))
+        self.assertTrue(TestLexer.test(""" 984753aBc_4s ""","""984753,aBc_4s,<EOF>""",132))
     def test_case_133(self):
-        self.assertTrue(TestLexer.test("""5*1+3/2%f""","5,*,1,+,3,/,2,%,f,<EOF>",133))
+        self.assertTrue(TestLexer.test(""" -----9877 ""","""-,-,-,-,-,9877,<EOF>""",133))
     def test_case_134(self):
-        self.assertTrue(TestLexer.test("""r = 111 + 55_658 * 0b111_11_111 / 0x1A67F5EE % 02425;""","r,=,111,+,55658,*,0b11111111,/,0x1A67F5EE,%,02425,;,<EOF>",134))
+        self.assertTrue(TestLexer.test(""" 5*1+3/2%f ""","""5,*,1,+,3,/,2,%,f,<EOF>""",134))
     def test_case_135(self):
-        self.assertTrue(TestLexer.test("""'123'""","Error Token '",135))
+        self.assertTrue(TestLexer.test(""" r = 111 + 55_658 * 0b111_11_111 / 0x1A67F5EE % 02425; ""","""r,=,111,+,55658,*,0b11111111,/,0x1A67F5EE,%,02425,;,<EOF>""",135))
     def test_case_136(self):
-        self.assertTrue(TestLexer.test("""1.234""","1.234,<EOF>",136))
+        self.assertTrue(TestLexer.test(""" '123' ""","""Error Token '""",136))
     def test_case_137(self):
-        self.assertTrue(TestLexer.test("""1.2e3 1.2E3""","1.2e3,1.2E3,<EOF>",137))
+        self.assertTrue(TestLexer.test(""" 1.234 ""","""1.234,<EOF>""",137))
     def test_case_138(self):
-        self.assertTrue(TestLexer.test("""7E-10 7e-10 7E+10 7e+10""","7E-10,7e-10,7E+10,7e+10,<EOF>",138))
+        self.assertTrue(TestLexer.test(""" 1.2e3 1.2E3 ""","""1.2e3,1.2E3,<EOF>""",138))
     def test_case_139(self):
-        self.assertTrue(TestLexer.test("""1234.567 ""","1234.567,<EOF>",139))
+        self.assertTrue(TestLexer.test(""" 7E-10 7e-10 7E+10 7e+10 ""","""7E-10,7e-10,7E+10,7e+10,<EOF>""",139))
     def test_case_140(self):
-        self.assertTrue(TestLexer.test("""123.123""","123.123,<EOF>",140))
+        self.assertTrue(TestLexer.test(""" 1234.567  ""","""1234.567,<EOF>""",140))
     def test_case_141(self):
-        self.assertTrue(TestLexer.test("""123.""","123.,<EOF>",141))
+        self.assertTrue(TestLexer.test(""" 123.123 ""","""123.123,<EOF>""",141))
     def test_case_142(self):
-        self.assertTrue(TestLexer.test(""".123e10 .123e10""",".123e10,.123e10,<EOF>",142))
+        self.assertTrue(TestLexer.test(""" .123e10 .123e10 """,""".123e10,.123e10,<EOF>""",142))
     def test_case_143(self):
-        self.assertTrue(TestLexer.test(""".123e-10""",".123e-10,<EOF>",143))
+        self.assertTrue(TestLexer.test(""" .123e-10 """,""".123e-10,<EOF>""",143))
     def test_case_144(self):
-        self.assertTrue(TestLexer.test(""".e-123""",".e-123,<EOF>",144))
+        self.assertTrue(TestLexer.test(""" .e-123 """,""".e-123,<EOF>""",144))
     def test_case_145(self):
-        self.assertTrue(TestLexer.test("""123E-9""","123E-9,<EOF>",145))
+        self.assertTrue(TestLexer.test(""" 123E-9 ""","""123E-9,<EOF>""",145))
     def test_case_146(self):
-        self.assertTrue(TestLexer.test("""123e9""","123e9,<EOF>",146))
+        self.assertTrue(TestLexer.test(""" 123e9 ""","""123e9,<EOF>""",146))
     def test_case_147(self):
-        self.assertTrue(TestLexer.test("""123.123e-123""","123.123e-123,<EOF>",147))
+        self.assertTrue(TestLexer.test(""" 123.123e-123 ""","""123.123e-123,<EOF>""",147))
     def test_case_148(self):
-        self.assertTrue(TestLexer.test("""123.123E123""","123.123E123,<EOF>",148))
+        self.assertTrue(TestLexer.test(""" 123.123E123 ""","""123.123E123,<EOF>""",148))
     def test_case_149(self):
-        self.assertTrue(TestLexer.test("""1,234""","1,,,234,<EOF>",149))
+        self.assertTrue(TestLexer.test(""" 1,234 ""","""1,,,234,<EOF>""",149))
     def test_case_150(self):
-        self.assertTrue(TestLexer.test(""".1e34""",".1e34,<EOF>",150))
+        self.assertTrue(TestLexer.test(""" .1e34 """,""".1e34,<EOF>""",150))
     def test_case_151(self):
-        self.assertTrue(TestLexer.test("""1token""","1,token,<EOF>",151))
+        self.assertTrue(TestLexer.test(""" 1token ""","""1,token,<EOF>""",151))
     def test_case_152(self):
-        self.assertTrue(TestLexer.test("""asdfh#$afnd""","asdfh,Error Token #",152))
+        self.assertTrue(TestLexer.test(""" asdfh#$afnd ""","""asdfh,Error Token #""",152))
     def test_case_153(self):
-        self.assertTrue(TestLexer.test("""token1 token2""","token1,token2,<EOF>",153))
+        self.assertTrue(TestLexer.test(""" token1 token2 ""","""token1,token2,<EOF>""",153))
     def test_case_154(self):
-        self.assertTrue(TestLexer.test("""1.0""","1.0,<EOF>",154))
+        self.assertTrue(TestLexer.test(""" 1.0 ""","""1.0,<EOF>""",154))
     def test_case_155(self):
-        self.assertTrue(TestLexer.test("""1e-12""","1e-12,<EOF>",155))
+        self.assertTrue(TestLexer.test(""" 1e-12 ""","""1e-12,<EOF>""",155))
     def test_case_156(self):
-        self.assertTrue(TestLexer.test("""1.0e-12""","1.0e-12,<EOF>",156))
+        self.assertTrue(TestLexer.test(""" 1.0e-12 ""","""1.0e-12,<EOF>""",156))
     def test_case_157(self):
-        self.assertTrue(TestLexer.test("""0.001""","0.001,<EOF>",157))
+        self.assertTrue(TestLexer.test(""" 0.001 ""","""0.001,<EOF>""",157))
     def test_case_158(self):
-        self.assertTrue(TestLexer.test("""Boolean True""","Boolean,True,<EOF>",158))
+        self.assertTrue(TestLexer.test(""" Boolean True ""","""Boolean,True,<EOF>""",158))
     def test_case_159(self):
-        self.assertTrue(TestLexer.test("""Boolean False""","Boolean,False,<EOF>",159))
+        self.assertTrue(TestLexer.test(""" Boolean False ""","""Boolean,False,<EOF>""",159))
     def test_case_160(self):
-        self.assertTrue(TestLexer.test("""TRUE""","TRUE,<EOF>",160))
+        self.assertTrue(TestLexer.test(""" TRUE ""","""TRUE,<EOF>""",160))
     def test_case_161(self):
-        self.assertTrue(TestLexer.test("""FaLse""","FaLse,<EOF>",161))
+        self.assertTrue(TestLexer.test(""" FaLse ""","""FaLse,<EOF>""",161))
     def test_case_162(self):
-        self.assertTrue(TestLexer.test("""$var""","$var,<EOF>",162))
+        self.assertTrue(TestLexer.test(""" $var ""","""$var,<EOF>""",162))
     def test_case_163(self):
-        self.assertTrue(TestLexer.test("""$$var""","Error Token $",163))
+        self.assertTrue(TestLexer.test(""" $$var ""","""Error Token $""",163))
     def test_case_164(self):
-        self.assertTrue(TestLexer.test("""$avs$ags""","$avs,$ags,<EOF>",164))
+        self.assertTrue(TestLexer.test(""" $avs$ags ""","""$avs,$ags,<EOF>""",164))
     def test_case_165(self):
-        self.assertTrue(TestLexer.test("""$""","Error Token $",165))
+        self.assertTrue(TestLexer.test(""" $ ""","""Error Token $""",165))
     def test_case_166(self):
-        self.assertTrue(TestLexer.test("""$avs\n avg""","$avs,avg,<EOF>",166))
+        self.assertTrue(TestLexer.test(""" $avs\n avg ""","""$avs,avg,<EOF>""",166))
     def test_case_167(self):
-        self.assertTrue(TestLexer.test("""$avs $ags""","$avs,$ags,<EOF>",167))
+        self.assertTrue(TestLexer.test(""" $avs $ags ""","""$avs,$ags,<EOF>""",167))
     def test_case_168(self):
-        self.assertTrue(TestLexer.test("""abc?svn""","abc,Error Token ?",168))
+        self.assertTrue(TestLexer.test(""" abc?svn ""","""abc,Error Token ?""",168))
     def test_case_169(self):
-        self.assertTrue(TestLexer.test("""abc A12""","abc,A12,<EOF>",169))
+        self.assertTrue(TestLexer.test(""" abc A12 ""","""abc,A12,<EOF>""",169))
     def test_case_170(self):
-        self.assertTrue(TestLexer.test("""Array(1,2,3)""","Array,(,1,,,2,,,3,),<EOF>",170))
+        self.assertTrue(TestLexer.test(""" Array(1,2,3) ""","""Array,(,1,,,2,,,3,),<EOF>""",170))
     def test_case_171(self):
-        self.assertTrue(TestLexer.test("""Array(1.0,2.001,0.03)""","Array,(,1.0,,,2.001,,,0.03,),<EOF>",171))
+        self.assertTrue(TestLexer.test(""" Array(1.0,2.001,0.03) ""","""Array,(,1.0,,,2.001,,,0.03,),<EOF>""",171))
     def test_case_172(self):
-        self.assertTrue(TestLexer.test("""Array(0x1A,0b01)""","Array,(,0x1A,,,0b01,),<EOF>",172))
+        self.assertTrue(TestLexer.test(""" Array(0x1A,0b01) ""","""Array,(,0x1A,,,0b01,),<EOF>""",172))
     def test_case_173(self):
-        self.assertTrue(TestLexer.test("""Var r, s: Int;""","Var,r,,,s,:,Int,;,<EOF>",173))
+        self.assertTrue(TestLexer.test(""" Var r, s: Int; ""","""Var,r,,,s,:,Int,;,<EOF>""",173))
     def test_case_174(self):
-        self.assertTrue(TestLexer.test("""Class Diagram{}""","Class,Diagram,{,},<EOF>",174))
+        self.assertTrue(TestLexer.test(""" Class Diagram{} ""","""Class,Diagram,{,},<EOF>""",174))
     def test_case_175(self):
-        self.assertTrue(TestLexer.test("""main(){}""","main,(,),{,},<EOF>",175))
+        self.assertTrue(TestLexer.test(""" main(){} ""","""main,(,),{,},<EOF>""",175))
+    def test_case_176(self):
+        self.assertTrue(TestLexer.test(""" "This is a string \ncontaining tab" ""","""Unclosed String: This is a string """,176))
+    def test_case_177(self):
+        self.assertTrue(TestLexer.test(""" "This is a string \\ncontaining new line" ""","""This is a string \\ncontaining new line,<EOF>""",177))
+    def test_case_178(self):
+        self.assertTrue(TestLexer.test(""" update(gametime: GameTime){} ""","""update,(,gametime,:,GameTime,),{,},<EOF>""",178))
+    def test_case_179(self):
+        self.assertTrue(TestLexer.test(""" Foreach (i In 1..100 By 2) ""","""Foreach,(,i,In,1,..,100,By,2,),<EOF>""",179))
+    def test_case_180(self):
+        self.assertTrue(TestLexer.test(""" 1..2e3 ""","""1,..,2e3,<EOF>""",180))
+    def test_case_181(self):
+        self.assertTrue(TestLexer.test(""" .2e3 """,""".2e3,<EOF>""",181))
+    def test_case_182(self):
+        self.assertTrue(TestLexer.test(""" "This isn\\'t a string" ""","""This isn\\'t a string,<EOF>""",182))
+    def test_case_183(self):
+        self.assertTrue(TestLexer.test(""" "He asked me: '" Where is Join '"" ""","""He asked me: '" Where is Join '",<EOF>""",183))
+    def test_case_184(self):
+        self.assertTrue(TestLexer.test(""" Class pIm:Ib_{Constructor (U,_53:Array [String ,0x41];_e1K:Array [Array [Array [Array [Array [Array [Int ,995],330_6],0b111110],034],54],076_5];_O2_:String ){} }Class F_P:_{} ""","""Class,pIm,:,Ib_,{,Constructor,(,U_53,:,Array,[,String,,,,0x41,],;,_e1K,:,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Int,,,,995,],,,3306,],,,0b111110,],,,034,],,,54,],,,0765,],;,_O2_,:,String,),{,},},Class,F_P,:,_,{,},<EOF>""",184))
+    def test_case_185(self):
+        self.assertTrue(TestLexer.test(""" "This string contains <EOF> EOF" ""","""Unclosed String: This string contains <""",185))
+    def test_case_186(self):
+        self.assertTrue(TestLexer.test(""" "abc\\h def" ""","""Illegal Escape In String: abc\h""",186))
+    def test_case_187(self):
+        self.assertTrue(TestLexer.test(""" 111_111 222__222 _3333_4444 555_666_ ""","""111111,222,__222,_3333_4444,555666,_,<EOF>""",187))
+    def test_case_188(self):
+        self.assertTrue(TestLexer.test(""" "abc\def" ""","""Illegal Escape In String: abc\d""",188))
+    def test_case_189(self):
+        self.assertTrue(TestLexer.test(""" 0 00 0b000123 0B030123 000129 0x00123ASD 0X00123ASD ""","""0,00,0b0001,23,0B0,30123,00012,9,0x00123A,SD,0X00123A,SD,<EOF>""",189))
+    def test_case_190(self):
+        self.assertTrue(TestLexer.test(""" Class _{Destructor (){}_6(_:Array [String ,658685]){}Val __:Array [Array [Boolean ,47],01];}Class _:_{}Class _Z_3_:_{Constructor (){} } ""","""Class,_,{,Destructor,(,),{,},_6,(,_,:,Array,[,String,,,658685,],),{,},Val,__,:,Array,[,Array,[,Boolean,,,47,],,,01,],;,},Class,_,:,_,{,},Class,_Z_3_,:,_,{,Constructor,(,),{,},},<EOF>""",190))
+    def test_case_191(self):
+        self.assertTrue(TestLexer.test(""" Class e_{Val j,a7,$5,_,$6:Array [Array [Array [Array [Array [Array [Array [Array [Array [Array [String ,0b101],4],0130],0B1100011],8],0b101],2],4],4],0x5E];} ""","""Class,e_,{,Val,j,,,a7,,,$5,,,_,,,$6,:,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,Array,[,String,,,0b101,],,,4,],,,0130,],,,0B1100011,],,,8,],,,0b101,],,,2,],,,4,],,,4,],,,0x5E,],;,},<EOF>""",191))
+    def test_case_192(self):
+        self.assertTrue(TestLexer.test(""" Class _:_{$g(_:Array [Float ,0xF_7A_A];Q0:Array [Boolean ,9_1_3_3_9];_:Int ;v,_,_0:Array [Array [Float ,0X5E],0xA]){_::$_();}Constructor (){} } ""","""Class,_,:,_,{,$g,(,_,:,Array,[,Float,,,0xF7AA,],;,Q0,:,Array,[,Boolean,,,91339,],;,_,:,Int,;,v,,,_,,,_0,:,Array,[,Array,[,Float,,,0X5E,],,,0xA,],),{,_,::,$_,(,),;,},Constructor,(,),{,},},<EOF>""",192))
+    def test_case_193(self):
+        self.assertTrue(TestLexer.test(""" Class _cW{$v70(y:String ;ON,_W4k,LSg_:Array [Float ,64];Y:I5){}Constructor (___R:Array [Array [String ,0X7C_8],0x3D];_,v374T98,f170,x3:__){} } ""","""Class,_cW,{,$v70,(,y,:,String,;,ON,,,_W4k,,,LSg_,:,Array,[,Float,,,64,],;,Y,:,I5,),{,},Constructor,(,___R,:,Array,[,Array,[,String,,,0X7C8,],,,0x3D,],;,_,,,v374T98,,,f170,,,x3,:,__,),{,},},<EOF>""",193))

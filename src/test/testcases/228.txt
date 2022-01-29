@@ -1,11 +1,9 @@
-Class Shape {
-    GetFunc(a,b : Int ; c : Float) {
-        Val num1: Int = 1;
-        Val num1, num2: Int = 1,2;
-    }
-}
-Class Program{
-    main(){
-        something = (True == (!False));
-    }
-}
+
+        Class Shape{
+            foo(){
+                Foreach(a In 1..10){ ## It understands as 1.,.,10 ##
+
+                }
+            }
+        }
+        

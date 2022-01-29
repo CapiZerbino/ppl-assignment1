@@ -1,31 +1,7 @@
-Class MenuItem: GuiComponents{
-    Var LABEL: String;
-    Var anchor: Anchor;
-    Var bounds: Rectangle;
-    Var font: Font;
-    Constructor(label: String; hoverColor: Color){
-        LABEL = label;
-        hoverColor = hoverColor;
-    }
-    setProperties(anchor: Anchor; x: int; width: int; height: int){
-        anchor = anchor;
-        bounds = New Rectangle(x,y,width, height);
-    }
-    update(gametime: GameTime){
-        
-        if(bounds.intersects(Mouse.getPosition())){
-            fontColor = hoverColor;
-            onHover();
-            if(Mouse.buttonDownOnce(MouseKeys.BUTTON_1)){
-                onClick();
+
+        Class Program {
+            main() {
+                Shape.$numOfShape;
             }
-        } Else {
-             fontColor = Color.WHITE;
         }
-    }
-    draw(g2d: Graphic2D){
-         g2d.setFont(font);
-        g2d.setColor(fontColor);
-        g2d.drawString(LABEL, bounds.x + 5, bounds.y + 15);
-    }
-}
+        

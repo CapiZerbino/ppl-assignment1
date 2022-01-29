@@ -1,0 +1,15 @@
+
+        Class Program {
+            main() {
+                If(a > b){
+
+                }
+                Elseif(a > c){
+
+                }
+                Else{
+
+                }
+            }
+        }
+        

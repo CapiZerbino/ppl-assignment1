@@ -1,1 +1,1 @@
-Break,Foreach,Int,Null,Constructor,Continue,If,True,False,Float,Boolean,Class,Val,Destructor,New,Elseif,Else,Array,In,String,Return,Var,By,<EOF>
+successful

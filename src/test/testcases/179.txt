@@ -1,1 +1,1 @@
-"This isn'"t my thing	"
+ Foreach (i In 1..100 By 2) 

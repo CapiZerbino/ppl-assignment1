@@ -5,7 +5,7 @@ Class Shape {
         Val immutableAttribute: Int = 0;
         Var length, width: Int;
         $getNumOfShape() {
-            Return $numOfShape;
+            Return numOfShape;
 }
 }
 Class Rectangle: Shape {
@@ -208,12 +208,14 @@ Class MenuItem: GuiComponents{
         bounds = New Rectangle(x,y,width, height);
     }
     update(gametime: GameTime){
+        ##Member access##
         
-        if(bounds.intersects(Mouse.getPosition())){
+       
+        If(bounds.intersects()){
             fontColor = hoverColor;
-            onHover();
-            if(Mouse.buttonDownOnce(MouseKeys.BUTTON_1)){
-                onClick();
+            Rectangle::$onHover();
+            If(Mouse.buttonDownOnce(MouseKeys.BUTTON_1)){
+                Test.onClick();
             }
         } Else {
              fontColor = Color.WHITE;
@@ -228,113 +230,182 @@ Class MenuItem: GuiComponents{
 out:successful
 ---
 in:
-Class Diagram{
-} 
-Class Program{
-    main(){
-        a=3;
+Class Test_Expression_Member_Access {
+    MethodInClass(){
+        If(NameClass.AttributeClass){}
+        If(NameClass::$StaticAttributeClass){}
+        If(NameClass.MethodClass()){}
+        If(NameClass::$StaticMethodClass()){}
     }
 }
 out:successful
 ---
 in:
-Class Diagram{
-}
-out:successful
----
-in:
-Class Diagram{
-    getArea(){
-        Return a;
-    }
-}
-Class Program{
-    main(){
-        ## Comment something here ##
-        Var a : Int;
-        a = 5;
-        Var b : String;
+Class Test_Expression_Member_Access{
+    MethodInClass(){
+         If(NameClass.MethodClass(1+1, a+b, NameClass.AttributeClass)){}
+         If(NameClass::$StaticMethodClass(!BooleanVar, a > b, a >= b)){}
+         Elseif(b < a){} Else {Test.doSomething();}
     }
 }
 out:successful
 ---
 in:
-Class Program{
-    main(){
-        ## Comment something here ##
-        Var a : Int;
-        a = 5;
-        ## Comment something here ##
-        Var b : String;
-        Val $c, d, $acc: String = "Here is another string","asd";
-        Foreach(a In 1..2){
-            Var a: Int;
-            If(a ==1){
-                a = 2 * call(aladin);
-                Break;
-                Invocation::$id();
-            }
-        }
-        Return;
+Class Test_Expression_Member_Access{
+    MethodInClass() {
+        Self::$numOfMotor = Motor::$numOfMotor + 1;
     }
 }
 out:successful
 ---
 in:
-Class Program {
-    main(){
-        Var $num1, $num2, $num3, $num4 :  Boolean = True, True, False;
-        Myfunc(){
-            a = 1;
-        }
-    }
-}
-out:successful
----
-in:
-Class Shape {
-    GetFunc(a,b : Int ; c : Float) {
-        Val num1: Int = 1;
-        Val num1, num2: Int = 1,2;
-    }
-}
-Class Program{
-    main(){
-        something = (True == (!False));
-    }
-}
-out:successful
----
-in:
-Class Shape {
-    Val $numOfShape: Int = 0;
-    Val immutableAttribute: Int = 0;
-    Var length, $width: Int;
-    Var a : Array[Int,3] = Array( 1,2,3 );
+Class FlappyBird:ActionListener {
+    Val $FPS, $WIDTH, $HEIGHT: Int = 60, 640, 480;
+    Var bird: Bird;
+    Var frame: JFrame;
+    Var jpanel: JPanel;
+    Val rects: Array[String, 5];
+    Val time, scroll: Int;
+    Val paused: Boolean;
 
-    $getNumOfShape() {
-        Return $numOfShape;
+    go(){
+        frame = New JFrame("Flappy Bird");
+        bird = New bird();
+        rects = New Rectangle();
+        panel = New GamePanel(Self, bird, rects);
+        frame.add(panel);
+
+        frame.setSize(WIDTH, HEIGHT);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(True);
+        frame.addKeyListener(Self);
+        t = New Timer(1000/FPS, Self);
     }
-}
-Class Program{
-    main(){
-        Var a : Int = 12;
-        If(a > 0){
-            a = 0x0A + 0x12_ABCD; 
-            Foreach(i In 1 .. 100 By 2){
-                a =  a[1+2+3];
-                a = a::getShape();
-                Continue;
+    actionPerformed(e: ActionEvent){
+        panel.repaint();
+        If(!paused){
+            bird.physics();
+            If(scoll % 90 == 0){
+                Val r: Rectangle = New Rectangle(WIDTH, 0, GamePanel.PIPE_W, (Math.random()*HEIGHT)/5 + 0.2 * HEIGHT);
+                Var h2: Int = (Math.random()*HEIGHT)/5 + 0.2 * HEIGHT;
+                Var r2: Rectangle = New Rectangle(WIDTH, HEIGHT - h2, GamePanel.PIPE_W, h2);
+                rects.add(r);
+                rects.add(r2);
             }
-            
-        }
-        Else{
-            a = a * 3 / 3 /3 /4 /4 + 5 -9; 
+
+            Foreach(r In 2..100) {
+                r.x = r.x - 3;
+                If(r.x + r.width <= 0) {
+                    toRemove.add(r);
+                }
+                If(r.contains(bird.x, bird.y)) {
+                    JOptionPane.showMessageDialog(frame, "You lose!\\n"+"Your score was: "+time+".");
+                    game = false;
+                }
+            }
+            If(bird.y > HEIGHT || (bird.y + bird.RAD < 0)) {
+                game = false;
+            }
+            If((x+y > height) || (x - y >= 0)){}
         }
     }
 }
 out:successful
 ---
 in:
-Class main{}
+Class Test_Array{
+    Val array: Array[Int, 5] = Array(1,2,3,4);
+    Val array: Array[Int, 5] = Array(Array(1,2,3,4),Array(1,2,3,4));
+}
 out:successful
+---
+in:
+Class _6{
+    Var _:Array [String ,0x34];
+    $_5(_:Array [Array [Array [String ,35],0b110001],0x34];
+    _J,p1:Array [Float ,35];
+    v:Boolean ;
+    __:__;H:Array [Array [Array [Int ,07_77],07],0X2];
+    U:__){}
+}
+Class s1n{}
+out:successful
+---
+in:
+Class F6_{
+    Destructor (){}
+    _81_4(G:Float ){} 
+}
+Class S{}
+Class _:l{
+    Val _:Array [Array [Int ,0b110],0b10];
+}
+Class _{}
+Class _:_{}
+Class b{}
+Class Q_:_n_{}
+Class _{Var __:_;}
+Class _{}
+out:successful
+---
+in:
+Class e{}
+Class _9N1t_:b{
+    Constructor (_z0l,R,q:Float ;_:Float ;_X:t){}
+    Destructor (){}
+    Val $_d,E,__xu,_8g_:Float ;
+    Destructor (){}
+    Val OfG:Boolean ;
+    Val N:Array [Array [Array [Array [Int ,0x81_B],1],074],0X4D];
+    Constructor (_:y;_:_s){
+        Var _0:Array [Float ,0b1];
+    } 
+}
+Class q_{}
+Class S{}
+Class _{
+    Constructor (R4v_:String ;md:Array [Array [Float ,0b111101],75];v:Float ){
+        Break ;
+    } 
+}Class _7{}
+Class j:_{}
+out:successful
+---
+in:
+Class Calculator{
+    Constructor() {
+        window = New JFrame("Calculator");
+        window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        window.setLocationRelativeTo(null); ## Move window to center##
+
+        comboTheme =  New text("Simple", "Colored", "DarkTheme", 230, 30, "Theme", themeSwitchEventConsumer);
+
+        comboCalcType =  New text("Standard", "Scientific", 20, 30, "Calculator type", calcTypeSwitchEventConsumer);
+
+        Var x: Array[Int, 0] = Array(MARGIN_X, MARGIN_X + 90, 200, 290, 380);
+        Var y: Array[Int, 0] =  Array(MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 180, MARGIN_Y + 260, MARGIN_Y + 340, MARGIN_Y + 420);
+
+        inText = New JTextField("0");
+        inText.setBounds(x[0], y[0], 350, 70);
+        inText.setEditable(false);
+        inText.setBackground(Color.WHITE);
+        inText.setFont(New Font("Comic Sans MS", Font.PLAIN, 33));
+        window.add(inText);
+
+    }
+}
+out:successful
+---
+in:
+Class Calculator{
+    Calculator() {
+          btnC = initBtn("C", x[0], y[1], event.(
+              repaintFont(),
+            inText.setText("0"),
+            opt = ' ',
+            val = 0,
+          )
+            
+        );
+    }
+}

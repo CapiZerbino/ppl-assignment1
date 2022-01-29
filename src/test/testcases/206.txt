@@ -1,4 +1,7 @@
-Class Test_Attribute_1{
-    Val My1stCons, My2ndCons: Int = 1 + 5, 2;
-    Var $x, $y : Int = 0, 0;
-}
+
+        Class Program {
+            main(a, b, c :Int) {
+                
+            }
+        }
+        

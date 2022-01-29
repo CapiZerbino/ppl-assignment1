@@ -1,5 +1,7 @@
-Class Test_Attribute_2{
-    Val My1stCons, My2ndCons: Int;
-    Val $staticname, nonstatic: String;
-    Var $x, $y : Int = 0, 0;
-}
+
+        Class Program {
+            main(a, b, c: Int; d, e, f: Int; g, h: Float) {
+                
+            }
+        }
+        

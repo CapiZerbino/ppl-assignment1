@@ -1,1 +1,1 @@
-Program(List(FuncDecl(Id(main),List(),VoidType,Block(List(),List(CallExpr(Id(putInt),List(IntLiteral(5))))))))
+Class d_M:__{}Class _:rj{}Class _:WI5Bk{Constructor (___N,_____,_q:Int ){Break ;Var B_l:Array [Array [Boolean ,2],0B1];} }

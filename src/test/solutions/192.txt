@@ -1,0 +1,1 @@
+Class,_,:,_,{,$g,(,_,:,Array,[,Float,,,0xF7AA,],;,Q0,:,Array,[,Boolean,,,91339,],;,_,:,Int,;,v,,,_,,,_0,:,Array,[,Array,[,Float,,,0X5E,],,,0xA,],),{,_,::,$_,(,),;,},Constructor,(,),{,},},<EOF>

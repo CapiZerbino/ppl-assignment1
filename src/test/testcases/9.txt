@@ -1,2 +1,1 @@
-Break  	Foreach Int Null 
-Constructor Continue  If True  False Float Boolean Class Val Destructor New Elseif Else Array In String Return Var By
+Class _7:N5{}Class _0{}Class fx_{_r85Z(_N,_:_4l;E,nq:Array [String ,01];s:Array [Int ,23]){} }Class w_{}Class _{Ft(n,_Ul_,W2c:Array [Boolean ,0113]){}Destructor (){Return ;} }Class _:j{}

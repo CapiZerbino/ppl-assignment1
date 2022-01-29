@@ -39,13 +39,18 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#attributename_list.
-    def visitAttributename_list(self, ctx:D96Parser.Attributename_listContext):
+    # Visit a parse tree produced by D96Parser#attribute_init_stmt.
+    def visitAttribute_init_stmt(self, ctx:D96Parser.Attribute_init_stmtContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#attribute_init.
-    def visitAttribute_init(self, ctx:D96Parser.Attribute_initContext):
+    # Visit a parse tree produced by D96Parser#attribute_stmt.
+    def visitAttribute_stmt(self, ctx:D96Parser.Attribute_stmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#attributename_list.
+    def visitAttributename_list(self, ctx:D96Parser.Attributename_listContext):
         return self.visitChildren(ctx)
 
 
@@ -144,11 +149,6 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#expr_list.
-    def visitExpr_list(self, ctx:D96Parser.Expr_listContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by D96Parser#postfix.
     def visitPostfix(self, ctx:D96Parser.PostfixContext):
         return self.visitChildren(ctx)
@@ -171,31 +171,6 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#array_list.
     def visitArray_list(self, ctx:D96Parser.Array_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#arrayitemint_list.
-    def visitArrayitemint_list(self, ctx:D96Parser.Arrayitemint_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#arrayitemfloat_list.
-    def visitArrayitemfloat_list(self, ctx:D96Parser.Arrayitemfloat_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#arrayitembool_list.
-    def visitArrayitembool_list(self, ctx:D96Parser.Arrayitembool_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#arrayitemstring_list.
-    def visitArrayitemstring_list(self, ctx:D96Parser.Arrayitemstring_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#arrayitemarray_list.
-    def visitArrayitemarray_list(self, ctx:D96Parser.Arrayitemarray_listContext):
         return self.visitChildren(ctx)
 
 
@@ -286,6 +261,21 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#methodinvocation_stmt.
     def visitMethodinvocation_stmt(self, ctx:D96Parser.Methodinvocation_stmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#methodinvo_instance.
+    def visitMethodinvo_instance(self, ctx:D96Parser.Methodinvo_instanceContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#methodinvo_static.
+    def visitMethodinvo_static(self, ctx:D96Parser.Methodinvo_staticContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#methodpostfix.
+    def visitMethodpostfix(self, ctx:D96Parser.MethodpostfixContext):
         return self.visitChildren(ctx)
 
 
